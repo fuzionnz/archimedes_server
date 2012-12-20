@@ -1,8 +1,0 @@
-core = "6.x"
-; dependencies[] = "archimedes_server"
-dependencies[] = "imagecache_canvasactions"
-description = "Provide diagrams and reports for Archimedes."
-name = "Archimedes Diagrams"
-package = "Archimedes Server"
-project = "archimedes_server"
-version = "6.x-1.1-alpha1"
