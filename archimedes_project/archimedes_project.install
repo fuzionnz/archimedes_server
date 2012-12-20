@@ -1,0 +1,13 @@
+<?php
+/**
+ * @file
+ * Archimedes project install.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function archimedes_project_schema() {
+  $schema['cache_archimedes_project'] = drupal_get_schema_unprocessed('system', 'cache');
+  return $schema;
+}

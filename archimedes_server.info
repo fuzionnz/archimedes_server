@@ -1,0 +1,11 @@
+name = Archimedes Server
+description = Accepts archimedes client requests and turns them into Drupal nodes.
+core = 7.x
+package = Archimedes
+dependencies[] = views
+dependencies[] = panels
+dependencies[] = entityreference
+dependencies[] = pathauto
+dependencies[] = link
+dependencies[] = archimedes_server_feature
+;configure = admin/config/content/example

@@ -1,0 +1,269 @@
+<?php
+/**
+ * @file
+ * Archimedes project module.
+ */
+
+define('ARCHIMEDES_PROJECT_CURRENT', 251);
+define('ARCHIMEDES_PROJECT_UPDATE_AVAIL', 260);
+define('ARCHIMEDES_PROJECT_UNKNOWN', 252);
+define('ARCHIMEDES_PROJECT_INSECURE', 253);
+define('ARCHIMEDES_PROJECT_UNSUPPORTED', 254);
+
+/**
+ * Implements hook_cron().
+ */
+function archimedes_project_cron() {
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'project')
+  /*      ->propertyCondition('changed', strtotime('-6 hours', REQUEST_TIME), '<')*/
+        ->propertyOrderBy('changed')
+        ->fieldCondition('field_major_version', 'value', NULL, 'IS NOT NULL')
+        ->fieldCondition('field_drupal_compat', 'value', NULL, 'IS NOT NULL')
+        ->fieldCondition('field_dru_proj', 'value', NULL, 'IS NOT NULL')
+        ->fieldCondition('field_status', 'tid', array(
+          ARCHIMEDES_PROJECT_INSECURE,
+          ARCHIMEDES_PROJECT_UNSUPPORTED,
+        ), 'NOT IN')
+        ->range(0, 100)
+        ->execute();
+
+  if (!isset($result['node'])) {
+    return;
+  }
+
+  $nids = array_keys($result['node']);
+
+  foreach (node_load_multiple($nids) as $node) {
+    watchdog('Archimedes', 'Updating project status for @title', array(
+      '@title' => $node->title,
+    ));
+    $version = t('@drupal_version.x-@major_version.@patch_version', array(
+      '@drupal_version' => $node->field_drupal_compat[$node->language][0]['value'],
+      '@major_version' => $node->field_major_version[$node->language][0]['value'],
+      '@patch_version' => $node->field_version_patch[$node->language][0]['value'],
+    ));
+    $project = array(
+      'name' => $node->field_name[$node->language][0]['value'],
+      'info' => array(
+        'name' => trim(str_replace($version, '', $node->title)),
+        'package' => $node->field_dru_proj[$node->language][0]['value'],
+        'version' => $version,
+        '_info_file_ctime' => REQUEST_TIME,
+        'datestamp' => 0,
+      ),
+      'datestamp' => 0,
+      'includes' => array(),
+      'project_type' => 'module',
+      'project_status' => TRUE,
+      'sub_themes' => array(),
+      'base_themes' => array(),
+    );
+    if (!$available = archimedes_project_update($project)) {
+      $node->field_status[$node->language][0]['tid'] = ARCHIMEDES_PROJECT_UNKNOWN;
+      node_save($node);
+      continue;
+    }
+
+    $node->field_project_link[$node->language][0]['url'] = $available['link'];
+
+    $status = archimedes_project_import_releases($available['releases'], $node);
+    $node->field_status[$node->language][0]['tid'] = $status;
+
+    if (isset($available['releases'][$version])) {
+      $release = $available['releases'][$version];
+      $node->field_download[$node->language][0]['url'] = $release['download_link'];
+    }
+    node_save($node);
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_view().
+ */
+function archimedes_project_views_pre_render($view) {
+  if ($view->name == 'modules') {
+    drupal_add_css(drupal_get_path('module', 'archimedes_server') . '/css/project.css');
+  }
+  elseif ($view->name == 'websites') {
+    drupal_add_css(drupal_get_path('module', 'archimedes_server') . '/css/project.css');
+  }
+}
+
+/**
+ * Import any newer projects into Archimedes.
+ */
+function archimedes_project_import_releases($releases, $project) {
+  $status = ARCHIMEDES_PROJECT_CURRENT;
+  foreach ($releases as $version => $release) {
+    // Don't bother loading the project version as we already know it exists.
+    if (strpos($project->title, $version) !== FALSE) {
+      return $status;
+    }
+
+    if (!isset($release['version_patch'])) {
+      $release['version_patch'] = 'x';
+    }
+    // We track version_path and version_extra as the same thing.
+    if (!empty($release['version_extra'])) {
+      $release['version_patch'] .= '-' . $release['version_extra'];
+    }
+
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node');
+    $query->entityCondition('bundle', 'project');
+    $query->fieldCondition('field_name', 'value', $project->field_name[$project->language][0]['value']);
+    $query->fieldCondition('field_major_version', 'value', $release['version_major']);
+    $query->fieldCondition('field_version_patch', 'value', $release['version_patch']);
+
+    $result = $query->execute();
+    if (isset($result['node'])) {
+      $node = node_load(key($result['node']));
+    }
+    else {
+      $node = clone $project;
+      unset($node->nid, $node->vid);
+
+      $node->field_major_version[$node->language][0]['value'] = $release['version_major'];
+      $node->field_version_patch[$node->language][0]['value'] = $release['version_patch'];
+
+      $search = strtr('drupal_major.x-major_version.version_patch', array(
+        'drupal_major' => $project->field_drupal_compat[$project->language][0]['value'],
+        'major_version' => $project->field_major_version[$node->language][0]['value'],
+        'version_patch' => $project->field_version_patch[$node->language][0]['value'],
+      ));
+
+      $replace = strtr('drupal_major.x-major_version.version_patch', array(
+        'drupal_major' => $project->field_drupal_compat[$project->language][0]['value'],
+        'major_version' => $node->field_major_version[$node->language][0]['value'],
+        'version_patch' => $node->field_version_patch[$node->language][0]['value'],
+      ));
+
+      $node->title = str_replace($search, $replace, $node->title);
+      $node->field_status[$node->language][0]['tid'] = $status;
+      watchdog('Archimedes', 'New release created: @title', array('@title' => $node->title));
+    }
+
+    if ($status == ARCHIMEDES_PROJECT_CURRENT) {
+      $status = ARCHIMEDES_PROJECT_UPDATE_AVAIL;
+    }
+
+    if (isset($release['download_link'])) {
+      $node->file_download[$node->language][0]['url'] = $release['download_link'];
+    }
+    $node->field_project_link[$node->language] = $project->field_project_link[$project->language];
+
+    node_save($node);
+
+    if (isset($release['terms']['Release type']) && in_array('Security update', $release['terms']['Release type'])) {
+      $status = ARCHIMEDES_PROJECT_INSECURE;
+    }
+  }
+  return $status;
+}
+
+/**
+ * Tag a project with tags.
+ */
+function archimedes_project_tag($node, $tags) {
+  $project_tags = array();
+  foreach ($tags as $tag) {
+    if ($tag == "Security update") {
+      archimedes_project_secure_release($node);
+    }
+    $terms = taxonomy_get_term_by_name($tag, 'release_type');
+    if (empty($terms)) {
+      $term = new StdClass();
+      $term->vocabulary_machine_name = 'release_type';
+      $term->vid = 5;
+      $term->name = $tag;
+      taxonomy_term_save($term);
+      $terms = array($term);
+    }
+    foreach ($terms as $term) {
+      $project_tags[] = $term->tid;
+    }
+  }
+
+  // Get a map of tids already associated with this project.
+  $known_tids = array();
+  if (isset($node->field_release_type[$node->language])) {
+    $known_tids = array_map(function ($field) {
+      return $field['tid'];
+    },
+    $node->field_release_type[$node->language]);
+  }
+
+  // Assign any new terms to the project.
+  foreach (array_diff($project_tags, $known_tids) as $value) {
+    $node->field_release_type[$node->language][] = array('tid' => $value);
+  }
+}
+
+/**
+ * Fetch update information about a project.
+ */
+function archimedes_project_update($project) {
+  module_load_include('inc', 'update', 'update.fetch');
+  // Determine the cache id.
+  list($major, $minor) = explode('.', $project['info']['version']);
+  $cid = $project['name'] . $project['info']['version'];
+
+  if (($cache = cache_get($cid, 'cache_archimedes_project')) && ($cache->expire > REQUEST_TIME)) {
+    return $cache->data;
+  }
+
+  $max_fetch_attempts = variable_get('update_max_fetch_attempts', UPDATE_MAX_FETCH_ATTEMPTS);
+
+  $success = FALSE;
+  $available = array();
+  global $base_url;
+
+  $site_key = drupal_hmac_base64($base_url . $major, drupal_get_private_key());
+  $url = str_replace(DRUPAL_CORE_COMPATIBILITY, "$major.x", _update_build_fetch_url($project, $site_key));
+  $fetch_url_base = _update_get_fetch_url_base($project);
+  $project_name = $project['name'];
+
+  if (empty($fail[$fetch_url_base]) || $fail[$fetch_url_base] < $max_fetch_attempts) {
+    $xml = drupal_http_request($url);
+    if (!isset($xml->error) && isset($xml->data)) {
+      $data = $xml->data;
+    }
+  }
+
+  if (!empty($data)) {
+    $available = update_parse_xml($data);
+  }
+  else {
+    $available['project_status'] = 'not-fetched';
+  }
+
+  $frequency = variable_get('update_check_frequency', 1);
+
+  cache_set($cid, $available, 'cache_archimedes_project', time() + (60 * 60 * 24 * $frequency));
+
+  return $available;
+}
+
+/**
+ * Tag projects prior to a given project as insecure.
+ */
+function archimedes_project_secure_release($node) {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'project')
+        ->fieldCondition('field_drupal_compat', 'value', $node->field_drupal_compat[$node->language][0]['value'])
+        ->fieldCondition('field_mod_version', 'value', $node->field_mod_version[$node->language][0]['value'], '<')
+        ->fieldCondition('field_name', 'value', $node->field_name[$node->language][0]['value'])
+        ->fieldCondition('field_status', 'tid', ARCHIMEDES_PROJECT_INSECURE, '<>');
+
+  $result = $query->execute();
+  if (!isset($result['node'])) {
+    return;
+  }
+  foreach (node_load_multiple(array_keys($result['node'])) as $project) {
+    $project->field_status[$project->language][0]['tid'] = ARCHIMEDES_PROJECT_INSECURE;
+    node_save($project);
+  }
+}

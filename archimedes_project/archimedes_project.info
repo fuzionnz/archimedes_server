@@ -1,0 +1,8 @@
+name = Archimedes Project
+description = Manage archimedes projects.
+core = 7.x
+package = Archimedes
+dependencies[] = archimedes_server
+dependencies[] = archimedes_server_feature
+dependencies[] = update
+;configure = admin/config/content/example

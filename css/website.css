@@ -1,0 +1,25 @@
+.node-website .visualize {
+  background-color:transparent;
+  border:0;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.node-website .visualize .label {
+/*  display:none; */
+}
+
+.node-website .visualize-labels-x li span.line, 
+.node-website .visualize-labels-y li span.line
+{
+  border:0;
+}
+
+.js table.archimedes-graph {
+}
+
+.graph-placeholder {
+  height:18px;
+  width:75px;
+  overflow:hidden;
+  border-bottom:1px solid #dfdfdf;
+}

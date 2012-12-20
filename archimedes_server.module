@@ -1,0 +1,246 @@
+<?php
+/**
+ * @file
+ * Archimedes server module file.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function archimedes_server_menu() {
+  $items['archimedes/update'] = array(
+    'access callback' => TRUE,
+    'page callback' => 'archimedes_server_recive_http',
+    'file' => 'archimedes_server.server.inc',
+  );
+
+  // Legacy update URL.
+  $items['archimedes-server/update'] = $items['archimedes/update'];
+  return $items;
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function archimedes_server_menu_alter(&$items) {
+  $access_arguments = $items['node/%/modules']['access arguments'];
+  array_unshift($access_arguments, $items['node/%/modules']['access callback']);
+
+  $items['node/%/modules']['access callback'] = 'archimedes_server_access_modules_precheck';
+  $items['node/%/modules']['access arguments'] = $access_arguments;
+}
+
+/**
+ * Implements hook_cron_queue_info().
+ */
+function archimedes_server_cron_queue_info() {
+  $queues['archimedes_server'] = array(
+    'worker callback' => 'archimedes_server_worker',
+    'time' => 60,
+  );
+  return $queues;
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function archimedes_server_node_view($node, $view_mode, $langcode) {
+  if ($view_mode != 'full') {
+    return;
+  }
+
+  // Add css if supported.
+  $css_file = dirname(__FILE__) . '/css/' . $node->type . '.css';
+  if (file_exists($css_file)) {
+    drupal_add_css(drupal_get_path('module', 'archimedes_server') . '/css/' . $node->type . '.css');
+  }
+
+  // Add js if supported.
+  $js_file = dirname(__FILE__) . '/js/' . $node->type . '.js';
+  if (file_exists($js_file)) {
+    drupal_add_js(drupal_get_path('module', 'archimedes_server') . '/js/' . $node->type . '.js');
+  }
+
+  // Set custom breadcrumbs for websites.
+  if ($node->type == 'website') {
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node');
+    $query->entityCondition('bundle', 'product');
+    $query->fieldCondition('field_websites', 'target_id', $node->nid);
+    $result = $query->execute();
+    $nids = array();
+    if (isset($result['node'])) {
+      $nids = array_keys($result['node']);
+    }
+    if (!empty($nids)) {
+      $breadcrumb = drupal_get_breadcrumb();
+      $nodes = node_load_multiple($nids);
+
+      $breadcrumb[] = l(t('Products'), 'products');
+
+      while ($node = array_shift($nodes)) {
+        $breadcrumb[] = l($node->title, 'node/' . $node->nid);
+      }
+      drupal_set_breadcrumb($breadcrumb);
+    }
+  }
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function archimedes_server_node_presave($node) {
+  // Record metric data for graphing.
+  if ($node->type == 'website' && isset($node->archimedes_document)) {
+    if ($field = $node->archimedes_document->dom->getElementById('field_c_dataset')) {
+      $values = $field->getElementsByTagName('value');
+
+      foreach ($values as $value) {
+        $label  = $value->getAttributeNS('monitor-plugin:dataset', 'title');
+        $metric = (int) trim($value->nodeValue);
+        $field_name = 'field_stat_' . strtolower(str_replace(' ', '_', $label));
+
+        $node->{$field_name}[LANGUAGE_NONE][0]['value'] = $metric;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function archimedes_server_node_insert($node) {
+  archimedes_server_node_update($node);
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function archimedes_server_node_update($node) {
+  // If the node begin saved is a website, check that it has an associated
+  // product to it be checking for a product with the same field_common_hash
+  // value.
+  if ($node->type == 'website' && isset($node->field_common_hash[$node->language][0]['value'])) {
+    require_once dirname(__FILE__) . '/archimedes_server.inc';
+    archimedes_server_attach_product($node);
+  }
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function archimedes_server_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'menu_alter') {
+    // Move archimedes_server to the end of the list. module_implements()
+    // iterates through $implementations with a foreach loop which PHP iterates
+    // in the order that the items were added, so to move an item to the end of
+    // the array, we remove it and then add it.
+    $group = $implementations['archimedes_server'];
+    unset($implementations['archimedes_server']);
+    $implementations['archimedes_server'] = $group;
+  }
+}
+
+/**
+ * Implements hook_archimedes_document_field_value_alter().
+ */
+function archimedes_server_archimedes_document_field_value_alter(&$value, DomElement $item, $field_name) {
+  // By default the value will be a string. If that has changed, another module
+  // has already overridden this value so we should leave it untouched.
+  if (!is_string($value)) {
+    return;
+  }
+
+  $plugins = module_invoke_all('archimedes_document_plugins_info');
+
+  // Iterate over the plugins and look for a plugin that works with this item.
+  foreach ($plugins as $ns => $info) {
+    if ($item->getAttributeNodeNS($ns, $info['default_attribute'])) {
+
+      // It the plugin returns a value, set $value to it and return. No other
+      // plugins may run.
+      if ($return = call_user_func($info['handler'], $item, $field_name, $ns)) {
+        $value = $return;
+        return;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_archimedes_document_plugins_info().
+ */
+function archimedes_server_archimedes_document_plugins_info() {
+  return array(
+    'monitor-plugin:drupal-module' => array(
+      'default_attribute' => 'title',
+      'handler' => 'archimedes_server_plugin_drupal_module',
+    ),
+  );
+}
+
+/**
+ * Implements hook_cron().
+ */
+function archimedes_server_cron() {
+  require_once dirname(__FILE__) . '/archimedes_server.server.inc';
+  require_once dirname(__FILE__) . '/archimedes_server.mail.inc';
+
+  $timezone = date_default_timezone_get();
+  date_default_timezone_set('UTC');
+
+  $queue = DrupalQueue::get('archimedes_server');
+  $queue->createQueue();
+
+  foreach (archimedes_server_check_inbox() as $xml) {
+    $queue->createItem($xml);
+    watchdog('Archimedes', 'Archimedes document queued');
+  }
+
+  date_default_timezone_set($timezone);
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function archimedes_server_process_field(&$variables, $hook) {
+  include_once dirname(__FILE__) . '/archimedes_server.process_field.inc';
+
+  $render_function = 'archimedes_server_process_field_' . $variables['element']['#object']->type . '_' . $variables['element']['#field_name'];
+
+  if (function_exists($render_function)) {
+    $render_function($variables, $hook);
+  }
+  elseif ($variables['element']['#object']->type == 'website' && strpos($variables['element']['#field_name'], 'field_stat') !== FALSE) {
+    archimedes_server_process_field_website_field_stat($variables);
+  }
+}
+
+/**
+ * Archimedes server worker.
+ *
+ * Process an xml document.
+ */
+function archimedes_server_worker($xml) {
+  require_once dirname(__FILE__) . '/archimedes_server.server.inc';
+
+  try {
+    $document = ArchimedesDocument::fromXML($xml);
+    archimedes_server_import_document($document);
+  }
+  catch (Exception $e) {
+    watchdog_exception('Archimedes', $e);
+  }
+}
+
+/**
+ * Ensure that the modules tab show up on the right nodes.
+ */
+function archimedes_server_access_modules_precheck($access_callback) {
+  $args = func_get_args();
+  array_shift($args);
+
+  $node = node_load(arg(1));
+
+  return ($node->type == 'website') && call_user_func_array($access_callback, $args);
+}

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Archimedes Server Feature feature.
+ */
+
+include_once 'archimedes_server_feature.features.inc';

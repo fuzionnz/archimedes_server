@@ -1,0 +1,20 @@
+<?php
+/**
+ * @file
+ * Archimedes server install file.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function archimedes_server_requirements($phase) {
+  $requirements = array();
+  if ($phase == 'runtime') {
+    $requirements['php5-imap'] = array(
+      'title' => 'PHP IMAP extension',
+      'value' => extension_loaded('imap') ? 'Installed' : 'Missing',
+      'severity' => extension_loaded('imap') ? REQUIREMENT_OK : REQUIREMENT_ERROR,
+    );
+  }
+  return $requirements;
+}
