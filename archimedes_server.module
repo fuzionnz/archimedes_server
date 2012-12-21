@@ -23,11 +23,13 @@ function archimedes_server_menu() {
  * Implements hook_menu_alter().
  */
 function archimedes_server_menu_alter(&$items) {
-  $access_arguments = $items['node/%/modules']['access arguments'];
-  array_unshift($access_arguments, $items['node/%/modules']['access callback']);
+  if (isset($items['node/%/modules'])) {
+    $access_arguments = $items['node/%/modules']['access arguments'];
+    array_unshift($access_arguments, $items['node/%/modules']['access callback']);
 
-  $items['node/%/modules']['access callback'] = 'archimedes_server_access_modules_precheck';
-  $items['node/%/modules']['access arguments'] = $access_arguments;
+    $items['node/%/modules']['access callback'] = 'archimedes_server_access_modules_precheck';
+    $items['node/%/modules']['access arguments'] = $access_arguments;
+  }
 }
 
 /**
@@ -183,21 +185,25 @@ function archimedes_server_archimedes_document_plugins_info() {
  * Implements hook_cron().
  */
 function archimedes_server_cron() {
-  require_once dirname(__FILE__) . '/archimedes_server.server.inc';
-  require_once dirname(__FILE__) . '/archimedes_server.mail.inc';
+  // If the email inbox checking has been enabled, try logging into the inbox
+  // to check for new messages.
+  if (variable_get('archimedes_mail_server', FALSE)) {
+    require_once dirname(__FILE__) . '/archimedes_server.server.inc';
+    require_once dirname(__FILE__) . '/archimedes_server.mail.inc';
 
-  $timezone = date_default_timezone_get();
-  date_default_timezone_set('UTC');
+    $timezone = date_default_timezone_get();
+    date_default_timezone_set('UTC');
 
-  $queue = DrupalQueue::get('archimedes_server');
-  $queue->createQueue();
+    $queue = DrupalQueue::get('archimedes_server');
+    $queue->createQueue();
 
-  foreach (archimedes_server_check_inbox() as $xml) {
-    $queue->createItem($xml);
-    watchdog('Archimedes', 'Archimedes document queued');
+    foreach (archimedes_server_check_inbox() as $xml) {
+      $queue->createItem($xml);
+      watchdog('Archimedes', 'Archimedes document queued');
+    }
+
+    date_default_timezone_set($timezone);
   }
-
-  date_default_timezone_set($timezone);
 }
 
 /**

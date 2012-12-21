@@ -27,7 +27,7 @@ function archimedes_server_check_inbox() {
     variable_get('archimedes_mail_password', ''),
     variable_get('archimedes_mail_ssl', FALSE)
   );
-  if (!$pkey = variable_get('archimedes_key_private', FALSE)) {
+  if (!$mbox || (!$pkey = variable_get('archimedes_key_private', FALSE))) {
     watchdog('Archimedes', "Cannot check inbox, no private is set to decrypt email attachments.", array(), WATCHDOG_ERROR);
     return array();
   }

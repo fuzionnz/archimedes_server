@@ -18,3 +18,26 @@ function archimedes_server_requirements($phase) {
   }
   return $requirements;
 }
+
+/**
+ * Implements hook_install().
+ */
+function archimedes_server_install() {
+   // Don't regenerate keys if the module is re-installed.
+   if (variable_get('archimedes_key_private', FALSE)) {
+     return;
+   }
+   // Create and save private key
+   $res = openssl_pkey_new();
+ 
+   // Export private key and store in $privkey.
+   openssl_pkey_export($res, $privkey);
+   variable_set('archimedes_key_private', $privkey);
+ 
+   // Get public key.
+   $pubkey = openssl_pkey_get_details($res);
+   variable_set('archimedes_key_public',  $pubkey['key']);
+ 
+   // If Archimedes client is installed, set the public key.
+   variable_set('archimedes_server_key', $pubkey['key']);
+}
