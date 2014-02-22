@@ -13,9 +13,9 @@ function archimedes_server_feature_taxonomy_default_vocabularies() {
       'name' => 'Environment',
       'machine_name' => 'environment',
       'description' => 'Environment names that websites can be apart of',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -36,9 +36,9 @@ function archimedes_server_feature_taxonomy_default_vocabularies() {
       'name' => 'Project status',
       'machine_name' => 'project_status',
       'description' => 'Tag projects with a status to indicate the projects stability',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -59,9 +59,9 @@ function archimedes_server_feature_taxonomy_default_vocabularies() {
       'name' => 'Release Type',
       'machine_name' => 'release_type',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
