@@ -991,16 +991,13 @@ return false;';
   $handler->display->display_options['filters']['field_site_env_tid']['id'] = 'field_site_env_tid';
   $handler->display->display_options['filters']['field_site_env_tid']['table'] = 'field_data_field_site_env';
   $handler->display->display_options['filters']['field_site_env_tid']['field'] = 'field_site_env_tid';
-  $handler->display->display_options['filters']['field_site_env_tid']['value'] = array(
-    243 => '243',
-  );
   $handler->display->display_options['filters']['field_site_env_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_site_env_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_site_env_tid']['expose']['operator_id'] = 'field_site_env_tid_op';
+  $handler->display->display_options['filters']['field_site_env_tid']['expose']['operator_id'] = 'env_op';
   $handler->display->display_options['filters']['field_site_env_tid']['expose']['label'] = 'Environment';
   $handler->display->display_options['filters']['field_site_env_tid']['expose']['use_operator'] = TRUE;
   $handler->display->display_options['filters']['field_site_env_tid']['expose']['operator'] = 'field_site_env_tid_op';
-  $handler->display->display_options['filters']['field_site_env_tid']['expose']['identifier'] = 'field_site_env_tid';
+  $handler->display->display_options['filters']['field_site_env_tid']['expose']['identifier'] = 'env';
   $handler->display->display_options['filters']['field_site_env_tid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
