@@ -73,7 +73,9 @@ function archimedes_project_cron() {
 
     if (isset($available['releases'][$version])) {
       $release = $available['releases'][$version];
-      $node->field_download[$node->language][0]['url'] = $release['download_link'];
+      if (isset($release['download_link'])) {
+        $node->field_download[$node->language][0]['url'] = $release['download_link'];
+      }
     }
     node_save($node);
   }
