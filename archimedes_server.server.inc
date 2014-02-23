@@ -272,7 +272,19 @@ function archimedes_server_plugin_drupal_module(DomElement $item, $field_name, $
   }
 
   if ($version = trim($item->getAttributeNodeNS($ns, 'field_mod_version')->nodeValue)) {
-    if (strpos($version, '-') === FALSE) {
+    watchdog('archimedes', '@name @version', array('@name' => $node->field_name[LANGUAGE_NONE][0]['value'], '@version' => $version), WATCHDOG_DEBUG);
+    if (strpos($version, '.') === FALSE) {
+      // Drush may set a version like 'master' or 'UNKNOWN' here, but
+      // we're going to need some Drupal version for storage. That
+      // field is currently an integer, so we use 0 to prevent the
+      // storage for this site bombing.
+      //
+      // https://github.com/xurizaemon/archimedes_server
+      $drupal_version = 0;
+      $module_version = $major_version = $version;
+      $minor_version = '';
+    }
+    elseif (strpos($version, '-') === FALSE) {
       $drupal_version = $module_version = $version;
       list($major_version, $version_patch) = explode('.', $drupal_version);
     }
