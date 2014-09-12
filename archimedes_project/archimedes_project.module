@@ -145,6 +145,7 @@ function archimedes_project_import_releases($releases, $project) {
       $node->title = str_replace($search, $replace, $node->title);
       $node->field_status[$node->language][0]['tid'] = $status;
       watchdog('Archimedes', 'New release created: @title', array('@title' => $node->title));
+      watchdog('archimedes', 'Release details: <pre>!release</pre>', array('!release' => print_r($node,1)), WATCHDOG_DEBUG);
     }
 
     if ($status == ARCHIMEDES_PROJECT_CURRENT) {

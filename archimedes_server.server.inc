@@ -119,12 +119,19 @@ class ArchimedesDocument {
     $dom = new DomDocument();
     $dom->loadXML($xml);
 
-    $guid = $dom->documentElement->getAttribute('id');
-    $timestamp = strtotime($dom->documentElement->getAttribute('datetime'));
+    if (isset($dom->documentElement)) {
+      $guid = $dom->documentElement->getAttribute('id');
+      $timestamp = strtotime($dom->documentElement->getAttribute('datetime'));
 
-    $document = new ArchimedesDocument('website', $timestamp, $guid);
-    $document->dom = $dom;
-    return $document;
+      $document = new ArchimedesDocument('website', $timestamp, $guid);
+      $document->dom = $dom;
+      return $document;
+    }
+    else {
+      watchdog('Archimedes', 'Could not get documentElement. XML was: @xml', array('@xml' => htmlspecialchars($xml)), WATCHDOG_ERROR);
+      $bt = debug_backtrace();
+      watchdog('Archimedes', 'Empty XML? <pre>!bt</pre>', array('!bt' => print_r($bt,1)), WATCHDOG_ERROR);
+    }
   }
 
   /**
@@ -155,7 +162,8 @@ class ArchimedesDocument {
       $result = $query->execute();
 
       if (isset($result['node'])) {
-        $this->node = node_load(array_shift(array_keys($result['node'])));
+        $node = array_shift(array_keys($result['node']));
+        $this->node = node_load($node);
         $this->node->revision = TRUE;
       }
     }
