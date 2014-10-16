@@ -162,7 +162,8 @@ class ArchimedesDocument {
       $result = $query->execute();
 
       if (isset($result['node'])) {
-        $node = array_shift(array_keys($result['node']));
+        $nodes = array_keys($result['node']);
+        $node = array_shift($nodes);
         $this->node = node_load($node);
         $this->node->revision = TRUE;
       }

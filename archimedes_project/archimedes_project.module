@@ -66,11 +66,17 @@ function archimedes_project_cron() {
       continue;
     }
 
+    $supported_major_versions = isset($available['supported_majors']) ? explode(',', $available['supported_majors']) : array();
+    $major_version = $node->field_major_version['und'][0]['value'];
+    if (!in_array($node->field_major_version['und'][0]['value'], $supported_major_versions)) {
+      $major_version = NULL;
+    }
+
     $node->field_project_link[$node->language][0]['url'] = $available['link'];
 
-    $status = archimedes_project_import_releases($available['releases'], $node);
-    $node->field_status[$node->language][0]['tid'] = $status;
+    $status = archimedes_project_import_releases($available['releases'], $node, $major_version);
 
+    $node->field_status[$node->language][0]['tid'] = $status;
     if (isset($available['releases'][$version])) {
       $release = $available['releases'][$version];
       if (isset($release['download_link'])) {
@@ -96,7 +102,7 @@ function archimedes_project_views_pre_render($view) {
 /**
  * Import any newer projects into Archimedes.
  */
-function archimedes_project_import_releases($releases, $project) {
+function archimedes_project_import_releases($releases, $project, $major_version = NULL) {
   $status = ARCHIMEDES_PROJECT_CURRENT;
   foreach ($releases as $version => $release) {
     // Don't bother loading the project version as we already know it exists.
@@ -159,6 +165,15 @@ function archimedes_project_import_releases($releases, $project) {
 
     node_save($node);
 
+    /**
+     * If the major version doesn't match we might be looking at a secure version that is the end of the release cycle
+     * e.g. flag 7-2.2 is currently the recommended version a security patch is in the latest 3.x version but that doesn't make
+     * 2.2 insecure
+     * presumably it will be updated to unsupported if it is no longer secure and there is no patch
+     */
+    if ($major_version && $release['version_major'] != $major_version) {
+      continue;
+    }
     if (isset($release['terms']['Release type']) && in_array('Security update', $release['terms']['Release type'])) {
       $status = ARCHIMEDES_PROJECT_INSECURE;
     }
@@ -257,6 +272,7 @@ function archimedes_project_secure_release($node) {
   $query->entityCondition('entity_type', 'node')
         ->entityCondition('bundle', 'project')
         ->fieldCondition('field_drupal_compat', 'value', $node->field_drupal_compat[$node->language][0]['value'])
+        ->fieldCondition('field_major_version', 'value', $node->field_major_version[$node->language][0]['value'], '=')
         ->fieldCondition('field_mod_version', 'value', $node->field_mod_version[$node->language][0]['value'], '<')
         ->fieldCondition('field_name', 'value', $node->field_name[$node->language][0]['value'])
         ->fieldCondition('field_status', 'tid', ARCHIMEDES_PROJECT_INSECURE, '<>');
