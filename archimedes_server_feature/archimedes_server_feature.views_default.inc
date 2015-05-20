@@ -580,7 +580,10 @@ return false;';
   $handler->display->display_options['path'] = 'products';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Products';
+  $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'main-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
 
   /* Display: Feed */
   $handler = $view->new_display('feed', 'Feed', 'feed');
@@ -1035,6 +1038,7 @@ return false;';
   $handler->display->display_options['tab_options']['type'] = 'normal';
   $handler->display->display_options['tab_options']['title'] = 'Websites';
   $handler->display->display_options['tab_options']['weight'] = '0';
+  $handler->display->display_options['tab_options']['name'] = 'main-menu';
 
   /* Display: Feed */
   $handler = $view->new_display('feed', 'Feed', 'feed');
