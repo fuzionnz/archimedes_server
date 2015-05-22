@@ -16,13 +16,13 @@ function archimedes_server_feature_filter_default_formats() {
     'name' => 'Filtered HTML',
     'cache' => 1,
     'status' => 1,
-    'weight' => 0,
+    'weight' => -10,
     'filters' => array(
       'filter_html' => array(
         'weight' => -10,
         'status' => 1,
         'settings' => array(
-          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd>',
+          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <code> <ul> <ol> <li> <dl> <dt> <dd> <pre>',
           'filter_html_help' => 1,
           'filter_html_nofollow' => 0,
         ),
@@ -41,7 +41,7 @@ function archimedes_server_feature_filter_default_formats() {
     'name' => 'Full HTML',
     'cache' => 1,
     'status' => 1,
-    'weight' => 0,
+    'weight' => -9,
     'filters' => array(),
   );
 

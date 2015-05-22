@@ -539,6 +539,7 @@ function archimedes_server_feature_field_default_field_instances() {
     'label' => 'Download',
     'required' => 0,
     'settings' => array(
+      'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
         'configurable_title' => 0,
@@ -551,6 +552,7 @@ function archimedes_server_feature_field_default_field_instances() {
       ),
       'enable_tokens' => 1,
       'title' => 'value',
+      'title_label_use_field_label' => FALSE,
       'title_maxlength' => 128,
       'title_value' => 'Download release tarball from Drupal.org',
       'url' => 0,
@@ -802,6 +804,45 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-project-field_mod_version'
+  $field_instances['node-project-field_mod_version'] = array(
+    'bundle' => 'project',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 11,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_mod_version',
+    'label' => 'Mod Version',
+    'required' => FALSE,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 14,
+    ),
+  );
+
   // Exported field_instance: 'node-project-field_name'
   $field_instances['node-project-field_name'] = array(
     'bundle' => 'project',
@@ -939,6 +980,7 @@ function archimedes_server_feature_field_default_field_instances() {
     'label' => 'Drupal.org project page',
     'required' => 0,
     'settings' => array(
+      'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
         'configurable_title' => 0,
@@ -951,6 +993,7 @@ function archimedes_server_feature_field_default_field_instances() {
       ),
       'enable_tokens' => 1,
       'title' => 'value',
+      'title_label_use_field_label' => FALSE,
       'title_maxlength' => 128,
       'title_value' => 'Drupal.org project page',
       'url' => 0,
@@ -1273,6 +1316,86 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-website-field_civicrm_git_branch'
+  $field_instances['node-website-field_civicrm_git_branch'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 7,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_civicrm_git_branch',
+    'label' => 'CiviCRM Git Branch',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 23,
+    ),
+  );
+
+  // Exported field_instance: 'node-website-field_civicrm_git_commit'
+  $field_instances['node-website-field_civicrm_git_commit'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_civicrm_git_commit',
+    'label' => 'CiviCRM Git commit',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 22,
+    ),
+  );
+
   // Exported field_instance: 'node-website-field_common_hash'
   $field_instances['node-website-field_common_hash'] = array(
     'bundle' => 'website',
@@ -1284,7 +1407,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 11,
       ),
       'full' => array(
         'label' => 'above',
@@ -1348,6 +1471,126 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-website-field_db_size'
+  $field_instances['node-website-field_db_size'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Total size of database(s).',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_db_size',
+    'label' => 'DB Size',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 16,
+    ),
+  );
+
+  // Exported field_instance: 'node-website-field_dbhost'
+  $field_instances['node-website-field_dbhost'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Hostname of DB server.',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 13,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_dbhost',
+    'label' => 'DB Host',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 15,
+    ),
+  );
+
+  // Exported field_instance: 'node-website-field_dbname'
+  $field_instances['node-website-field_dbname'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 12,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_dbname',
+    'label' => 'DB Name',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 14,
+    ),
+  );
+
   // Exported field_instance: 'node-website-field_drupal_mod'
   $field_instances['node-website-field_drupal_mod'] = array(
     'bundle' => 'website',
@@ -1359,7 +1602,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 10,
       ),
       'full' => array(
         'label' => 'above',
@@ -1420,7 +1663,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 31,
+      'weight' => 7,
     ),
   );
 
@@ -1435,7 +1678,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 9,
       ),
       'full' => array(
         'label' => 'above',
@@ -1496,7 +1739,86 @@ function archimedes_server_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 32,
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-website-field_drupal_version'
+  $field_instances['node-website-field_drupal_version'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_drupal_version',
+    'label' => 'Drupal Version',
+    'required' => FALSE,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 20,
+    ),
+  );
+
+  // Exported field_instance: 'node-website-field_git_status'
+  $field_instances['node-website-field_git_status'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 8,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_git_status',
+    'label' => 'Git Status',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 21,
     ),
   );
 
@@ -1511,7 +1833,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 12,
       ),
       'full' => array(
         'label' => 'above',
@@ -1587,7 +1909,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'full' => array(
         'label' => 'above',
@@ -1637,6 +1959,7 @@ function archimedes_server_feature_field_default_field_instances() {
     'label' => 'Link',
     'required' => 0,
     'settings' => array(
+      'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
         'configurable_title' => 0,
@@ -1649,6 +1972,7 @@ function archimedes_server_feature_field_default_field_instances() {
       ),
       'enable_tokens' => 1,
       'title' => 'optional',
+      'title_label_use_field_label' => FALSE,
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
@@ -1676,7 +2000,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'full' => array(
         'label' => 'above',
@@ -1737,6 +2061,86 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-website-field_sitedata'
+  $field_instances['node-website-field_sitedata'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Size of public and private files.',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_sitedata',
+    'label' => 'Site Data',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 17,
+    ),
+  );
+
+  // Exported field_instance: 'node-website-field_sitesize'
+  $field_instances['node-website-field_sitesize'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Size of site codebase.',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_sitesize',
+    'label' => 'Site Size',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 18,
+    ),
+  );
+
   // Exported field_instance: 'node-website-field_stat_nodes'
   $field_instances['node-website-field_stat_nodes'] = array(
     'bundle' => 'website',
@@ -1753,9 +2157,9 @@ function archimedes_server_feature_field_default_field_instances() {
         'module' => 'number',
         'settings' => array(
           'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
+          'prefix_suffix' => 1,
           'scale' => 0,
-          'thousand_separator' => ' ',
+          'thousand_separator' => ',',
         ),
         'type' => 'number_integer',
         'weight' => 6,
@@ -1805,7 +2209,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_stat_nodes',
-    'label' => 'Content growth',
+    'label' => 'Content',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -1819,7 +2223,7 @@ function archimedes_server_feature_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 33,
+      'weight' => 9,
     ),
   );
 
@@ -1839,9 +2243,9 @@ function archimedes_server_feature_field_default_field_instances() {
         'module' => 'number',
         'settings' => array(
           'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
+          'prefix_suffix' => 1,
           'scale' => 0,
-          'thousand_separator' => ' ',
+          'thousand_separator' => ',',
         ),
         'type' => 'number_integer',
         'weight' => 7,
@@ -1891,13 +2295,13 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_stat_revisions',
-    'label' => 'Content revision growth',
+    'label' => 'Content revisions',
     'required' => 0,
     'settings' => array(
       'max' => '',
       'min' => 0,
       'prefix' => '',
-      'suffix' => ' node revisions',
+      'suffix' => ' revisions',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1905,7 +2309,7 @@ function archimedes_server_feature_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 34,
+      'weight' => 10,
     ),
   );
 
@@ -1921,9 +2325,9 @@ function archimedes_server_feature_field_default_field_instances() {
         'module' => 'number',
         'settings' => array(
           'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
+          'prefix_suffix' => 1,
           'scale' => 0,
-          'thousand_separator' => ' ',
+          'thousand_separator' => ',',
         ),
         'type' => 'number_integer',
         'weight' => 8,
@@ -1973,7 +2377,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_stat_users',
-    'label' => 'User account growth',
+    'label' => 'User accounts',
     'required' => 0,
     'settings' => array(
       'max' => '',
@@ -1987,35 +2391,174 @@ function archimedes_server_feature_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 35,
+      'weight' => 11,
+    ),
+  );
+
+  // Exported field_instance: 'node-website-field_totalsize'
+  $field_instances['node-website-field_totalsize'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Total size of DBs, files and codebase.',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_totalsize',
+    'label' => 'Total Size',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 19,
+    ),
+  );
+
+  // Exported field_instance: 'node-website-field_webroot'
+  $field_instances['node-website-field_webroot'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 11,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_webroot',
+    'label' => 'Webroot',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 13,
+    ),
+  );
+
+  // Exported field_instance: 'node-website-field_webserver'
+  $field_instances['node-website-field_webserver'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'The webserver (<em>hostname -f</em>) that Archimedes was called on.',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 10,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_webserver',
+    'label' => 'Webserver',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 12,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
+  t('CiviCRM Git Branch');
+  t('CiviCRM Git commit');
   t('Common hash');
-  t('Content growth');
-  t('Content revision growth');
+  t('Content');
+  t('Content revisions');
+  t('DB Host');
+  t('DB Name');
+  t('DB Size');
   t('Documentation');
   t('Download');
+  t('Drupal Version');
   t('Drupal compatibility');
   t('Drupal.org project name');
   t('Drupal.org project page');
   t('Environment');
   t('Git Repositories');
+  t('Git Status');
+  t('Hostname of DB server.');
   t('Link');
   t('Machine name');
   t('Major version');
+  t('Mod Version');
   t('Modules');
   t('Name');
   t('Project type');
   t('Release type');
+  t('Site Data');
+  t('Site Size');
+  t('Size of public and private files.');
+  t('Size of site codebase.');
   t('Status');
+  t('The webserver (<em>hostname -f</em>) that Archimedes was called on.');
   t('Themes');
+  t('Total Size');
+  t('Total size of DBs, files and codebase.');
+  t('Total size of database(s).');
   t('Unique Identifier');
-  t('User account growth');
+  t('User accounts');
   t('Version patch');
+  t('Webroot');
+  t('Webserver');
   t('Websites');
 
   return $field_instances;

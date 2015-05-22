@@ -274,6 +274,9 @@ function archimedes_server_feature_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -281,10 +284,10 @@ function archimedes_server_feature_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '5',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '6',
         ),
       ),
       'display' => array(),

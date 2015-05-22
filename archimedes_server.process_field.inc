@@ -61,7 +61,7 @@ function archimedes_server_process_field_product_field_common_hash(&$variables) 
       '#value' => t("\$conf['archimedes_common_key'] = '@key';", array(
         '@key' => $item['#markup'],
       )),
-      '#description' => t('Ensure this configuration is set in the <em>settings.php</em> of each project that should be apart of this product.'),
+      '#description' => t('Ensure this configuration is set in the <em>settings.php</em> of each project that should be a part of this product.'),
     );
     $element['#size'] = strlen($element['#value']);
     $item['#markup'] = drupal_render($element);

@@ -7,7 +7,7 @@
 /**
  * Menu callback: Receive an archimedes update via HTTP.
  */
-function archimedes_server_recive_http() {
+function archimedes_server_receive_http() {
   // Never cache this page.
   drupal_page_is_cacheable(FALSE);
   if (!$request = json_decode(file_get_contents('php://input'))) {
@@ -59,7 +59,7 @@ function archimedes_server_import_document(ArchimedesDocument $document) {
     // Special case for title field.
     if ($field_name == 'title') {
       $document->node->title = trim($item->nodeValue);
-      watchdog('Archimedes', 'Importing archimedes document: \'@title\'', array(
+      watchdog('Archimedes', 'Importing Archimedes document: \'@title\'', array(
         '@title' => $document->node->title,
       ));
       continue;
@@ -176,7 +176,6 @@ class ArchimedesDocument {
   public function save() {
     $this->node->archimedes_document = $this;
     node_save($this->node);
-
     return $this->node;
   }
 

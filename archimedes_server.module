@@ -10,7 +10,7 @@
 function archimedes_server_menu() {
   $items['archimedes/update'] = array(
     'access callback' => TRUE,
-    'page callback' => 'archimedes_server_recive_http',
+    'page callback' => 'archimedes_server_receive_http',
     'file' => 'archimedes_server.server.inc',
   );
 
@@ -49,6 +49,19 @@ function archimedes_server_cron_queue_info() {
 function archimedes_server_node_view($node, $view_mode, $langcode) {
   if ($view_mode != 'full') {
     return;
+  }
+
+  // Render "size" fields using format_size().
+  $size_fields = array(
+    'field_sitedata',
+    'field_sitesize',
+    'field_db_size',
+    'field_totalsize',
+  );
+  foreach ($size_fields as $field) {
+    if (isset($node->content[$field])) {
+      $node->content[$field][0]['#markup'] = format_size($node->content[$field][0]['#markup']);
+    }
   }
 
   // Add css if supported.
@@ -92,6 +105,21 @@ function archimedes_server_node_view($node, $view_mode, $langcode) {
  * Implements hook_node_presave().
  */
 function archimedes_server_node_presave($node) {
+  // Calculate a total size for the site.
+  if ($node->type == 'website') {
+    $total = 0;
+    $sizes = array(
+      'data' => field_get_items('node', $node, 'field_sitedata'),
+      'db' => field_get_items('node', $node, 'field_sitesize'),
+      'code' => field_get_items('node', $node, 'field_db_size'),
+    );
+    foreach ($sizes as $size) {
+      $total += $size[0]['value'];
+    }
+    if ($total) {
+      $node->field_totalsize[$node->language][0]['value'] = $total;
+    }
+  }
   // Record metric data for graphing.
   if ($node->type == 'website' && isset($node->archimedes_document)) {
     if ($field = $node->archimedes_document->dom->getElementById('field_c_dataset')) {
@@ -214,6 +242,14 @@ function archimedes_server_process_field(&$variables, $hook) {
 
   $render_function = 'archimedes_server_process_field_' . $variables['element']['#object']->type . '_' . $variables['element']['#field_name'];
 
+  switch ($variables['element']['#field_name']) {
+    case 'field_db_size':
+    case 'field_sitedata':
+    case 'field_sitesize':
+    case 'field_totalsize':
+      archimedes_server_process_field_website_field_stat($variables);
+      return;
+  }
   if (function_exists($render_function)) {
     $render_function($variables, $hook);
   }
