@@ -35,21 +35,21 @@ function archimedes_server_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_mode_product';
-  $strongarm->value = 1;
+  $strongarm->value = '1';
   $export['comment_default_mode_product'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_mode_project';
-  $strongarm->value = 1;
+  $strongarm->value = '1';
   $export['comment_default_mode_project'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_default_mode_website';
-  $strongarm->value = 1;
+  $strongarm->value = '1';
   $export['comment_default_mode_website'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -77,21 +77,21 @@ function archimedes_server_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_form_location_product';
-  $strongarm->value = 1;
+  $strongarm->value = '1';
   $export['comment_form_location_product'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_form_location_project';
-  $strongarm->value = 1;
+  $strongarm->value = '1';
   $export['comment_form_location_project'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_form_location_website';
-  $strongarm->value = 1;
+  $strongarm->value = '1';
   $export['comment_form_location_website'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -133,21 +133,21 @@ function archimedes_server_feature_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_subject_field_product';
-  $strongarm->value = 1;
+  $strongarm->value = '1';
   $export['comment_subject_field_product'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_subject_field_project';
-  $strongarm->value = 1;
+  $strongarm->value = '1';
   $export['comment_subject_field_project'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_subject_field_website';
-  $strongarm->value = 1;
+  $strongarm->value = '1';
   $export['comment_subject_field_website'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -164,25 +164,25 @@ function archimedes_server_feature_strongarm() {
   $strongarm->value = array(
     'view_modes' => array(
       'teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => 'true',
       ),
       'full' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'rss' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'search_index' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'search_result' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'print' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'token' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
     ),
     'extra_fields' => array(
@@ -197,7 +197,6 @@ function archimedes_server_feature_strongarm() {
           'weight' => '6',
         ),
       ),
-      'display' => array(),
     ),
   );
   $export['field_bundle_settings_node__product'] = $strongarm;
@@ -209,25 +208,25 @@ function archimedes_server_feature_strongarm() {
   $strongarm->value = array(
     'view_modes' => array(
       'teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => 'true',
       ),
       'full' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'rss' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'search_index' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'search_result' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'print' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'token' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
     ),
     'extra_fields' => array(
@@ -242,7 +241,6 @@ function archimedes_server_feature_strongarm() {
           'weight' => '11',
         ),
       ),
-      'display' => array(),
     ),
   );
   $export['field_bundle_settings_node__project'] = $strongarm;
@@ -254,25 +252,25 @@ function archimedes_server_feature_strongarm() {
   $strongarm->value = array(
     'view_modes' => array(
       'teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => 'true',
       ),
       'full' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'rss' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'search_index' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'search_result' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'print' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'token' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => 'false',
       ),
       'diff_standard' => array(
         'custom_settings' => FALSE,
@@ -290,7 +288,6 @@ function archimedes_server_feature_strongarm() {
           'weight' => '6',
         ),
       ),
-      'display' => array(),
     ),
   );
   $export['field_bundle_settings_node__website'] = $strongarm;
