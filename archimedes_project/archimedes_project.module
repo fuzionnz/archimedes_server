@@ -17,7 +17,7 @@ function archimedes_project_cron() {
   $query = new EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
         ->entityCondition('bundle', 'project')
-  /*      ->propertyCondition('changed', strtotime('-6 hours', REQUEST_TIME), '<')*/
+        ->propertyCondition('changed', strtotime('-6 hours', REQUEST_TIME), '<')
         ->propertyOrderBy('changed')
         ->fieldCondition('field_major_version', 'value', NULL, 'IS NOT NULL')
         ->fieldCondition('field_drupal_compat', 'value', NULL, 'IS NOT NULL')
