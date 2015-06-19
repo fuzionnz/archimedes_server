@@ -199,7 +199,7 @@ class ArchimedesDocument {
       return TRUE;
     }
     // ::setField only supports text fields naitively.
-    elseif ($field_info['type'] != 'text') {
+    elseif ($field_info['type'] != 'text' && $field_info['type'] != 'text_long') {
       return FALSE;
     }
 
@@ -218,6 +218,19 @@ function archimedes_server_field_handler_link_field($field_info, $node, $values)
     $node->{$field_info['field_name']}[$node->language][$idx] = array(
       'url' => $value,
       'title' => $node->title,
+    );
+  }
+}
+
+/**
+ * Field support for text_long.
+ */
+function archimedes_server_field_handler_text_long($field_info, $node, $values) {
+  dpm(func_get_args(), 'args');
+  foreach ($values as $idx => $value) {
+    $node->{$field_info['field_name']}[$node->language][$idx] = array(
+      'value' => $value,
+      'format' => 'filtered_html',
     );
   }
 }
