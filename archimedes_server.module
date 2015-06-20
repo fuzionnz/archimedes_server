@@ -267,6 +267,7 @@ function archimedes_server_worker($xml) {
   require_once dirname(__FILE__) . '/archimedes_server.server.inc';
 
   try {
+    watchdog('archimedes_server', 'Processing XML: @data', array('@data' => $xml), WATCHDOG_NOTICE);
     $document = ArchimedesDocument::fromXML($xml);
     archimedes_server_import_document($document);
   }
@@ -308,7 +309,8 @@ function archimedes_server_test_process() {
   $queue = DrupalQueue::get('archimedes_server');
   while ($item = $queue->claimItem()) {
     // drush_log('Processing archimedes document ' . $item->item_id . ' from queue');
-    // dpm($item, 'item');
+    dpm($item, 'item');
+    watchdog('archimedes_server', 'Processing item #@item_id: @data', array('@item_id' => $item->item_id, '@data' => $item->data), WATCHDOG_DEBUG);
     archimedes_server_worker($item->data);
     $queue->deleteItem($item);
   }
