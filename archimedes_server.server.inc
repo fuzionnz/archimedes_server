@@ -59,7 +59,7 @@ function archimedes_server_import_document(ArchimedesDocument $document) {
     // Special case for title field.
     if ($field_name == 'title') {
       $document->node->title = trim($item->nodeValue);
-      watchdog('Archimedes', 'Importing Archimedes document: \'@title\'', array(
+      watchdog('archimedes_server', 'Importing Archimedes document: \'@title\'', array(
         '@title' => $document->node->title,
       ));
       continue;
@@ -127,9 +127,9 @@ class ArchimedesDocument {
       return $document;
     }
     else {
-      watchdog('Archimedes', 'Could not get documentElement. XML was: @xml', array('@xml' => htmlspecialchars($xml)), WATCHDOG_ERROR);
+      watchdog('archimedes_server', 'Could not get documentElement. XML was: @xml', array('@xml' => htmlspecialchars($xml)), WATCHDOG_ERROR);
       $bt = debug_backtrace();
-      watchdog('Archimedes', 'Empty XML? <pre>!bt</pre>', array('!bt' => print_r($bt,1)), WATCHDOG_ERROR);
+      watchdog('archimedes_server', 'Empty XML? <pre>!bt</pre>', array('!bt' => print_r($bt,1)), WATCHDOG_ERROR);
     }
   }
 
@@ -297,7 +297,7 @@ function archimedes_server_plugin_drupal_module(DomElement $item, $field_name, $
   }
 
   if ($version = trim($item->getAttributeNodeNS($ns, 'field_mod_version')->nodeValue)) {
-    watchdog('archimedes', '@name @version', array('@name' => $node->field_name[LANGUAGE_NONE][0]['value'], '@version' => $version), WATCHDOG_DEBUG);
+    // watchdog('archimedes_server', '@name @version', array('@name' => $node->field_name[LANGUAGE_NONE][0]['value'], '@version' => $version), WATCHDOG_DEBUG);
     if (strpos($version, '.') === FALSE) {
       // Drush may set a version like 'master' or 'UNKNOWN' here, but
       // we're going to need some Drupal version for storage. That

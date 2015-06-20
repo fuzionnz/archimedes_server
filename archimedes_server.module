@@ -227,7 +227,7 @@ function archimedes_server_cron() {
 
     foreach (archimedes_server_check_inbox() as $xml) {
       $queue->createItem($xml);
-      watchdog('Archimedes', 'Archimedes document queued');
+      watchdog('archimedes_server', 'Archimedes document queued');
     }
 
     date_default_timezone_set($timezone);
