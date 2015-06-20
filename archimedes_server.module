@@ -292,8 +292,8 @@ function archimedes_entity_presave($entity, $type) {
   if ($type == 'node') {
     // @TODO This should be generalised or fixed elsewhere.
     if (isset($entity->field_git_status) && $entity->field_git_status === FALSE) {
-      // $entity->field_git_status = array();
-      unset($entity->field_git_status);
+      $entity->field_git_status = array();
+      // unset($entity->field_git_status);
     }
   }
 }
