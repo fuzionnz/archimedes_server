@@ -313,6 +313,6 @@ function archimedes_server_test_process() {
     $queue->deleteItem($item);
   }
 
-  $node = node_load(73);
+  $node = node_load(803);
   dpm($node, 'node');
 }
