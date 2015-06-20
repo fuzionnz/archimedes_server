@@ -75,7 +75,6 @@ function archimedes_server_import_document(ArchimedesDocument $document) {
     }
     $document->setField($field_name, $field_values);
   }
-
   $document->save();
 }
 
@@ -175,7 +174,7 @@ class ArchimedesDocument {
    */
   public function save() {
     $this->node->archimedes_document = $this;
-    node_save($this->node);
+    entity_save('node', $this->node);
     return $this->node;
   }
 
@@ -193,6 +192,7 @@ class ArchimedesDocument {
     }
 
     // Check if archimedes supports the field.
+    dpm($field_info['type']);
     $field_handler = 'archimedes_server_field_handler_' . $field_info['type'];
     if (function_exists($field_handler)) {
       $field_handler($field_info, $this->node, $values);
@@ -226,12 +226,18 @@ function archimedes_server_field_handler_link_field($field_info, $node, $values)
  * Field support for text_long.
  */
 function archimedes_server_field_handler_text_long($field_info, $node, $values) {
-  dpm(func_get_args(), 'args');
-  foreach ($values as $idx => $value) {
-    $node->{$field_info['field_name']}[$node->language][$idx] = array(
-      'value' => $value,
-      'format' => 'filtered_html',
-    );
+  dpm($values, 'vals');
+  if ($values !== array('')) {
+    foreach ($values as $idx => $value) {
+      $node->{$field_info['field_name']}[$node->language][$idx] = array(
+        'value' => $value,
+        'format' => 'filtered_html',
+      );
+    }
+  }
+  else {
+    $node->{$field_info['field_name']} = FALSE;
+    // unset($node->{$field_info['field_name']});
   }
 }
 

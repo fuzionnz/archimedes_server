@@ -241,6 +241,7 @@ function archimedes_server_process_field(&$variables, $hook) {
   include_once dirname(__FILE__) . '/archimedes_server.process_field.inc';
 
   $render_function = 'archimedes_server_process_field_' . $variables['element']['#object']->type . '_' . $variables['element']['#field_name'];
+  watchdog('archimedes_server', 'Processing %field with %function.', array('%field' => $variables['element']['#field_name'], '%function' => $render_function), WATCHDOG_DEBUG);
 
   switch ($variables['element']['#field_name']) {
     case 'field_db_size':
@@ -285,4 +286,33 @@ function archimedes_server_access_modules_precheck($access_callback) {
   $node = node_load(arg(1));
 
   return ($node->type == 'website') && call_user_func_array($access_callback, $args);
+}
+
+function archimedes_entity_presave($entity, $type) {
+  if ($type == 'node') {
+    // @TODO This should be generalised or fixed elsewhere.
+    if (isset($entity->field_git_status) && $entity->field_git_status === FALSE) {
+      // $entity->field_git_status = array();
+      unset($entity->field_git_status);
+    }
+  }
+}
+
+function archimedes_server_test_process() {
+  module_load_include('inc', 'archimedes');
+  module_load_include('inc', 'archimedes_server', 'archimedes_server.server.inc');
+  module_load_include('inc', 'archimedes_server', 'archimedes_server.mail.inc');
+
+  archimedes_send_report();
+
+  $queue = DrupalQueue::get('archimedes_server');
+  while ($item = $queue->claimItem()) {
+    // drush_log('Processing archimedes document ' . $item->item_id . ' from queue');
+    dpm($item, 'item');
+    archimedes_server_worker($item->data);
+    $queue->deleteItem($item);
+  }
+
+  $node = node_load(73);
+  dpm($node, 'node');
 }

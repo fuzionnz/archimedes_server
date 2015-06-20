@@ -36,7 +36,7 @@ function archimedes_project_cron() {
   $nids = array_keys($result['node']);
 
   foreach (node_load_multiple($nids) as $node) {
-    watchdog('Archimedes', 'Updating project status for @title', array(
+    watchdog('archimedes', 'Updating project status for @title', array(
       '@title' => $node->title,
     ));
     $version = t('@drupal_version.x-@major_version.@patch_version', array(
@@ -150,7 +150,7 @@ function archimedes_project_import_releases($releases, $project, $major_version 
 
       $node->title = str_replace($search, $replace, $node->title);
       $node->field_status[$node->language][0]['tid'] = $status;
-      watchdog('Archimedes', 'New release created: @title', array('@title' => $node->title));
+      watchdog('archimedes', 'New release created: @title', array('@title' => $node->title));
       watchdog('archimedes', 'Release details: <pre>!release</pre>', array('!release' => print_r($node,1)), WATCHDOG_DEBUG);
     }
 
