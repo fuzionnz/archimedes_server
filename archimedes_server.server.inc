@@ -182,9 +182,6 @@ class ArchimedesDocument {
    * Set of create a field on the node type.
    */
   public function setField($field_name, Array $values) {
-             if ($field_name == 'field_git_status') {
-                 dpm($values, $field_name);
-             }
     if (!$field_info = field_info_field($field_name)) {
       return FALSE;
     }
@@ -228,7 +225,6 @@ function archimedes_server_field_handler_link_field($field_info, $node, $values)
  * Field support for text_long.
  */
 function archimedes_server_field_handler_text_long($field_info, $node, $values) {
-  dpm($values, 'vals');
   if ($values !== array('')) {
     foreach ($values as $idx => $value) {
       $node->{$field_info['field_name']}[$node->language][$idx] = array(
