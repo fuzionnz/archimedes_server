@@ -182,6 +182,7 @@ class ArchimedesDocument {
    * Set of create a field on the node type.
    */
   public function setField($field_name, Array $values) {
+             dpm($values, $field_name);
     if (!$field_info = field_info_field($field_name)) {
       return FALSE;
     }
@@ -192,7 +193,6 @@ class ArchimedesDocument {
     }
 
     // Check if archimedes supports the field.
-    dpm($field_info['type']);
     $field_handler = 'archimedes_server_field_handler_' . $field_info['type'];
     if (function_exists($field_handler)) {
       $field_handler($field_info, $this->node, $values);
