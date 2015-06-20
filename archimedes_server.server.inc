@@ -182,7 +182,9 @@ class ArchimedesDocument {
    * Set of create a field on the node type.
    */
   public function setField($field_name, Array $values) {
-             dpm($values, $field_name);
+             if ($field_name == 'field_git_status') {
+                 dpm($values, $field_name);
+             }
     if (!$field_info = field_info_field($field_name)) {
       return FALSE;
     }
