@@ -20,6 +20,7 @@ dependencies[] = views
 dependencies[] = views_access_callback
 dependencies[] = views_data_export_json
 datestamp = 1393012512
+features[ctools][] = field_group:field_group:1
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2

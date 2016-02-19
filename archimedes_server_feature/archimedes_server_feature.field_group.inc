@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function archimedes_server_feature_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -42,7 +42,7 @@ function archimedes_server_feature_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_growth|node|website|default'] = $field_group;
+  $field_groups['group_growth|node|website|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -77,7 +77,7 @@ function archimedes_server_feature_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_info|node|website|default'] = $field_group;
+  $field_groups['group_info|node|website|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -112,7 +112,13 @@ function archimedes_server_feature_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_stats|node|website|default'] = $field_group;
+  $field_groups['group_stats|node|website|default'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Growth');
+  t('Info');
+  t('Stats');
+
+  return $field_groups;
 }
