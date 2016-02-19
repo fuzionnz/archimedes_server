@@ -123,5 +123,5 @@ function archimedes_server_process_field_website_field_stat(&$variables) {
  * Preprocess: product->field_git_repositories.
  */
 function archimedes_server_process_field_git_status(&$variables) {
-  watchdog('archimedes_server', 'Preprocess: @data', array('@data' => print_r($variables,1)));
+  // watchdog('archimedes_server', 'Preprocess: @data', array('@data' => print_r($variables,1)));
 }
