@@ -1,4 +1,4 @@
-<?php
+ <?php
 /**
  * @file
  * Preprocess helper functions.
@@ -117,4 +117,11 @@ function archimedes_server_process_field_website_field_stat(&$variables) {
     $variables['items'][0]['#markup'] .= theme('table', $table);
   }
 
+}
+
+/**
+ * Preprocess: product->field_git_repositories.
+ */
+function archimedes_server_process_field_git_status(&$variables) {
+  watchdog('archimedes_server', 'Preprocess: @data', array('@data' => print_r($variables,1)));
 }

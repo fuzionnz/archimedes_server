@@ -8,11 +8,40 @@
  * Implements hook_requirements().
  */
 function archimedes_server_requirements($phase) {
+  if ($phase == 'runtime') {
+    $t = get_t();
+    $jquery = drupal_get_library('system', 'jquery');
+    $ui = drupal_get_library('system', 'ui');
+    $requirements['jquery_update'] = array(
+      'title' => $t('jQuery Update'),
+      'severity' => REQUIREMENT_OK,
+      'value' => t('jQuery %jquery (<a href="@link">configure</a>) and jQuery UI %ui', array('%jquery' => $jquery['version'], '%ui' => $ui['version'], '@link' => url('admin/config/development/jquery_update'))),
+    );
+  }
+
   $requirements = array();
   if ($phase == 'runtime') {
+    $t = get_t();
+    $count = db_select('queue', 'q')
+      ->fields('q')
+      ->condition('name', 'archimedes_server')
+      ->countQuery()
+      ->execute()
+      ->fetchField();
+    if ($count) {
+      $message = '@count items in queue, execute cron to process.';
+    }
+    else {
+      $message = '@count items in queue.';
+    }
+    $requirements['archimedes-queue'] = array(
+      'title' => t('Archimedes Server queue'),
+      'value' => $t($message, array('@count' => $count)),
+      'severity' => $count ? REQUIREMENT_WARNING : REQUIREMENT_OK,
+    );
     $requirements['php5-imap'] = array(
-      'title' => 'PHP IMAP extension',
-      'value' => extension_loaded('imap') ? 'Installed' : 'Missing',
+      'title' => $t('PHP IMAP extension'),
+      'value' => extension_loaded('imap') ? $t('Installed') : $t('Missing'),
       'severity' => extension_loaded('imap') ? REQUIREMENT_OK : REQUIREMENT_ERROR,
     );
   }
@@ -29,15 +58,15 @@ function archimedes_server_install() {
    }
    // Create and save private key
    $res = openssl_pkey_new();
- 
+
    // Export private key and store in $privkey.
    openssl_pkey_export($res, $privkey);
    variable_set('archimedes_key_private', $privkey);
- 
+
    // Get public key.
    $pubkey = openssl_pkey_get_details($res);
    variable_set('archimedes_key_public',  $pubkey['key']);
- 
+
    // If Archimedes client is installed, set the public key.
    variable_set('archimedes_server_key', $pubkey['key']);
 }

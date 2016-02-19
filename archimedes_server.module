@@ -14,6 +14,14 @@ function archimedes_server_menu() {
     'file' => 'archimedes_server.server.inc',
   );
 
+  $items['admin/reports/archimedes/queue'] = array(
+    'access arguments' => array('administer site configuration'),
+    'page callback' => 'archimedes_server_page_queue',
+    'file' => 'archimedes_server.pages.inc',
+    'title' => 'Queue',
+    'description' => 'Show items in the Archimedes import queue.',
+  );
+
   // Legacy update URL.
   $items['archimedes-server/update'] = $items['archimedes/update'];
   return $items;
@@ -309,12 +317,11 @@ function archimedes_server_test_process() {
   $queue = DrupalQueue::get('archimedes_server');
   while ($item = $queue->claimItem()) {
     // drush_log('Processing archimedes document ' . $item->item_id . ' from queue');
-    dpm($item, 'item');
     watchdog('archimedes_server', 'Processing item #@item_id: @data', array('@item_id' => $item->item_id, '@data' => $item->data), WATCHDOG_DEBUG);
     archimedes_server_worker($item->data);
     $queue->deleteItem($item);
   }
 
-  $node = node_load(73);
+  // $node = node_load(73);
   // dpm($node, 'node');
 }
