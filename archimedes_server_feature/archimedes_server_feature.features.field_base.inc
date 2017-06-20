@@ -10,7 +10,7 @@
 function archimedes_server_feature_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'body'
+  // Exported field_base: 'body'.
   $field_bases['body'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -31,7 +31,42 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
-  // Exported field_base: 'field_civicrm_git_branch'
+  // Exported field_base: 'field_civicrm_extensions'.
+  $field_bases['field_civicrm_extensions'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_civicrm_extensions',
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'entityreference',
+    'settings' => array(
+      'handler' => 'base',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 0,
+          ),
+        ),
+        'sort' => array(
+          'type' => 'none',
+        ),
+        'target_bundles' => array(
+          'civicrm_extension' => 'civicrm_extension',
+        ),
+      ),
+      'target_type' => 'node',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
+  // Exported field_base: 'field_civicrm_git_branch'.
   $field_bases['field_civicrm_git_branch'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -52,7 +87,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_civicrm_git_commit'
+  // Exported field_base: 'field_civicrm_git_commit'.
   $field_bases['field_civicrm_git_commit'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -73,7 +108,28 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_common_hash'
+  // Exported field_base: 'field_civicrm_lastcron'.
+  $field_bases['field_civicrm_lastcron'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_civicrm_lastcron',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_common_hash'.
   $field_bases['field_common_hash'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -94,7 +150,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_db_size'
+  // Exported field_base: 'field_db_size'.
   $field_bases['field_db_size'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -115,7 +171,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_dbhost'
+  // Exported field_base: 'field_dbhost'.
   $field_bases['field_dbhost'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -136,7 +192,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_dbname'
+  // Exported field_base: 'field_dbname'.
   $field_bases['field_dbname'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -157,7 +213,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_documentation'
+  // Exported field_base: 'field_documentation'.
   $field_bases['field_documentation'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -192,7 +248,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_download'
+  // Exported field_base: 'field_download'.
   $field_bases['field_download'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -221,7 +277,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_dru_proj'
+  // Exported field_base: 'field_dru_proj'.
   $field_bases['field_dru_proj'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -242,7 +298,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_drupal_compat'
+  // Exported field_base: 'field_drupal_compat'.
   $field_bases['field_drupal_compat'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -257,7 +313,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_drupal_mod'
+  // Exported field_base: 'field_drupal_mod'.
   $field_bases['field_drupal_mod'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -294,7 +350,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_drupal_theme'
+  // Exported field_base: 'field_drupal_theme'.
   $field_bases['field_drupal_theme'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -331,7 +387,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_drupal_version'
+  // Exported field_base: 'field_drupal_version'.
   $field_bases['field_drupal_version'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -352,7 +408,70 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_git_repositories'
+  // Exported field_base: 'field_git_branch'.
+  $field_bases['field_git_branch'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_git_branch',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_git_commit_hash'.
+  $field_bases['field_git_commit_hash'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_git_commit_hash',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_git_remote_url'.
+  $field_bases['field_git_remote_url'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_git_remote_url',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 2048,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_git_repositories'.
   $field_bases['field_git_repositories'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -373,7 +492,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_git_status'
+  // Exported field_base: 'field_git_status'.
   $field_bases['field_git_status'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -392,7 +511,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_guid'
+  // Exported field_base: 'field_guid'.
   $field_bases['field_guid'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -413,7 +532,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_major_version'
+  // Exported field_base: 'field_major_version'.
   $field_bases['field_major_version'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -428,7 +547,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_mod_version'
+  // Exported field_base: 'field_mod_version'.
   $field_bases['field_mod_version'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -449,7 +568,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_name'
+  // Exported field_base: 'field_name'.
   $field_bases['field_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -470,7 +589,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_project_link'
+  // Exported field_base: 'field_project_link'.
   $field_bases['field_project_link'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -499,7 +618,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_project_type'
+  // Exported field_base: 'field_project_type'.
   $field_bases['field_project_type'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -525,7 +644,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_release_type'
+  // Exported field_base: 'field_release_type'.
   $field_bases['field_release_type'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -551,7 +670,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_servername'
+  // Exported field_base: 'field_servername'.
   $field_bases['field_servername'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -580,7 +699,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_site_env'
+  // Exported field_base: 'field_site_env'.
   $field_bases['field_site_env'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -606,7 +725,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_sitedata'
+  // Exported field_base: 'field_sitedata'.
   $field_bases['field_sitedata'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -627,7 +746,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_sitesize'
+  // Exported field_base: 'field_sitesize'.
   $field_bases['field_sitesize'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -648,7 +767,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_stat_nodes'
+  // Exported field_base: 'field_stat_nodes'.
   $field_bases['field_stat_nodes'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -663,7 +782,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_stat_revisions'
+  // Exported field_base: 'field_stat_revisions'.
   $field_bases['field_stat_revisions'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -678,7 +797,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_stat_users'
+  // Exported field_base: 'field_stat_users'.
   $field_bases['field_stat_users'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -693,7 +812,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_status'
+  // Exported field_base: 'field_status'.
   $field_bases['field_status'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -719,7 +838,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_totalsize'
+  // Exported field_base: 'field_totalsize'.
   $field_bases['field_totalsize'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -740,7 +859,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_version_patch'
+  // Exported field_base: 'field_version_patch'.
   $field_bases['field_version_patch'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -761,7 +880,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_webroot'
+  // Exported field_base: 'field_webroot'.
   $field_bases['field_webroot'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -782,7 +901,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_webserver'
+  // Exported field_base: 'field_webserver'.
   $field_bases['field_webserver'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -803,7 +922,7 @@ function archimedes_server_feature_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_websites'
+  // Exported field_base: 'field_websites'.
   $field_bases['field_websites'] = array(
     'active' => 1,
     'cardinality' => -1,

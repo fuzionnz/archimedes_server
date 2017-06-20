@@ -10,7 +10,7 @@
 function archimedes_server_feature_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-product-body'
+  // Exported field_instance: 'node-product-body'.
   $field_instances['node-product-body'] = array(
     'bundle' => 'product',
     'default_value' => NULL,
@@ -90,7 +90,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-product-field_common_hash'
+  // Exported field_instance: 'node-product-field_common_hash'.
   $field_instances['node-product-field_common_hash'] = array(
     'bundle' => 'product',
     'default_value' => NULL,
@@ -166,7 +166,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-product-field_documentation'
+  // Exported field_instance: 'node-product-field_documentation'.
   $field_instances['node-product-field_documentation'] = array(
     'bundle' => 'product',
     'default_value' => NULL,
@@ -245,7 +245,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-product-field_git_repositories'
+  // Exported field_instance: 'node-product-field_git_repositories'.
   $field_instances['node-product-field_git_repositories'] = array(
     'bundle' => 'product',
     'default_value' => NULL,
@@ -321,7 +321,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-product-field_websites'
+  // Exported field_instance: 'node-product-field_websites'.
   $field_instances['node-product-field_websites'] = array(
     'bundle' => 'product',
     'default_value' => NULL,
@@ -397,7 +397,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-project-body'
+  // Exported field_instance: 'node-project-body'.
   $field_instances['node-project-body'] = array(
     'bundle' => 'project',
     'default_value' => NULL,
@@ -477,7 +477,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-project-field_download'
+  // Exported field_instance: 'node-project-field_download'.
   $field_instances['node-project-field_download'] = array(
     'bundle' => 'project',
     'default_value' => NULL,
@@ -568,7 +568,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-project-field_dru_proj'
+  // Exported field_instance: 'node-project-field_dru_proj'.
   $field_instances['node-project-field_dru_proj'] = array(
     'bundle' => 'project',
     'default_value' => NULL,
@@ -644,7 +644,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-project-field_drupal_compat'
+  // Exported field_instance: 'node-project-field_drupal_compat'.
   $field_instances['node-project-field_drupal_compat'] = array(
     'bundle' => 'project',
     'default_value' => array(
@@ -724,7 +724,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-project-field_major_version'
+  // Exported field_instance: 'node-project-field_major_version'.
   $field_instances['node-project-field_major_version'] = array(
     'bundle' => 'project',
     'default_value' => array(
@@ -804,7 +804,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-project-field_mod_version'
+  // Exported field_instance: 'node-project-field_mod_version'.
   $field_instances['node-project-field_mod_version'] = array(
     'bundle' => 'project',
     'default_value' => NULL,
@@ -843,7 +843,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-project-field_name'
+  // Exported field_instance: 'node-project-field_name'.
   $field_instances['node-project-field_name'] = array(
     'bundle' => 'project',
     'default_value' => NULL,
@@ -918,7 +918,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-project-field_project_link'
+  // Exported field_instance: 'node-project-field_project_link'.
   $field_instances['node-project-field_project_link'] = array(
     'bundle' => 'project',
     'default_value' => NULL,
@@ -1009,7 +1009,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-project-field_project_type'
+  // Exported field_instance: 'node-project-field_project_type'.
   $field_instances['node-project-field_project_type'] = array(
     'bundle' => 'project',
     'default_value' => array(
@@ -1085,7 +1085,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-project-field_release_type'
+  // Exported field_instance: 'node-project-field_release_type'.
   $field_instances['node-project-field_release_type'] = array(
     'bundle' => 'project',
     'default_value' => NULL,
@@ -1160,7 +1160,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-project-field_status'
+  // Exported field_instance: 'node-project-field_status'.
   $field_instances['node-project-field_status'] = array(
     'bundle' => 'project',
     'default_value' => array(
@@ -1237,7 +1237,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-project-field_version_patch'
+  // Exported field_instance: 'node-project-field_version_patch'.
   $field_instances['node-project-field_version_patch'] = array(
     'bundle' => 'project',
     'default_value' => array(
@@ -1316,7 +1316,49 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_civicrm_git_branch'
+  // Exported field_instance: 'node-website-field_civicrm_extensions'.
+  $field_instances['node-website-field_civicrm_extensions'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 19,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_civicrm_extensions',
+    'label' => 'CiviCRM Extensions',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 29,
+    ),
+  );
+
+  // Exported field_instance: 'node-website-field_civicrm_git_branch'.
   $field_instances['node-website-field_civicrm_git_branch'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -1328,7 +1370,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 7,
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1352,11 +1394,11 @@ function archimedes_server_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 23,
+      'weight' => 26,
     ),
   );
 
-  // Exported field_instance: 'node-website-field_civicrm_git_commit'
+  // Exported field_instance: 'node-website-field_civicrm_git_commit'.
   $field_instances['node-website-field_civicrm_git_commit'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -1368,7 +1410,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 6,
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1392,11 +1434,51 @@ function archimedes_server_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 22,
+      'weight' => 25,
     ),
   );
 
-  // Exported field_instance: 'node-website-field_common_hash'
+  // Exported field_instance: 'node-website-field_civicrm_lastcron'.
+  $field_instances['node-website-field_civicrm_lastcron'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 14,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_civicrm_lastcron',
+    'label' => 'CiviCRM last cron',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 27,
+    ),
+  );
+
+  // Exported field_instance: 'node-website-field_common_hash'.
   $field_instances['node-website-field_common_hash'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -1407,7 +1489,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 12,
       ),
       'full' => array(
         'label' => 'above',
@@ -1471,7 +1553,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_db_size'
+  // Exported field_instance: 'node-website-field_db_size'.
   $field_instances['node-website-field_db_size'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -1511,7 +1593,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_dbhost'
+  // Exported field_instance: 'node-website-field_dbhost'.
   $field_instances['node-website-field_dbhost'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -1551,7 +1633,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_dbname'
+  // Exported field_instance: 'node-website-field_dbname'.
   $field_instances['node-website-field_dbname'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -1591,7 +1673,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_drupal_mod'
+  // Exported field_instance: 'node-website-field_drupal_mod'.
   $field_instances['node-website-field_drupal_mod'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -1602,7 +1684,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 11,
       ),
       'full' => array(
         'label' => 'above',
@@ -1667,7 +1749,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_drupal_theme'
+  // Exported field_instance: 'node-website-field_drupal_theme'.
   $field_instances['node-website-field_drupal_theme'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -1678,7 +1760,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 10,
       ),
       'full' => array(
         'label' => 'above',
@@ -1743,7 +1825,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_drupal_version'
+  // Exported field_instance: 'node-website-field_drupal_version'.
   $field_instances['node-website-field_drupal_version'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -1782,7 +1864,127 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_git_status'
+  // Exported field_instance: 'node-website-field_git_branch'.
+  $field_instances['node-website-field_git_branch'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 16,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_git_branch',
+    'label' => 'Git Branch',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 22,
+    ),
+  );
+
+  // Exported field_instance: 'node-website-field_git_commit_hash'.
+  $field_instances['node-website-field_git_commit_hash'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 18,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_git_commit_hash',
+    'label' => 'Git Commit Hash',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 23,
+    ),
+  );
+
+  // Exported field_instance: 'node-website-field_git_remote_url'.
+  $field_instances['node-website-field_git_remote_url'] = array(
+    'bundle' => 'website',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 17,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_git_remote_url',
+    'label' => 'Git Remote URL',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 21,
+    ),
+  );
+
+  // Exported field_instance: 'node-website-field_git_status'.
   $field_instances['node-website-field_git_status'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -1794,7 +1996,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 8,
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1818,11 +2020,11 @@ function archimedes_server_feature_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 21,
+      'weight' => 24,
     ),
   );
 
-  // Exported field_instance: 'node-website-field_guid'
+  // Exported field_instance: 'node-website-field_guid'.
   $field_instances['node-website-field_guid'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -1833,7 +2035,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 13,
       ),
       'full' => array(
         'label' => 'above',
@@ -1897,7 +2099,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_servername'
+  // Exported field_instance: 'node-website-field_servername'.
   $field_instances['node-website-field_servername'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -1988,7 +2190,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_site_env'
+  // Exported field_instance: 'node-website-field_site_env'.
   $field_instances['node-website-field_site_env'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -2061,7 +2263,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_sitedata'
+  // Exported field_instance: 'node-website-field_sitedata'.
   $field_instances['node-website-field_sitedata'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -2101,7 +2303,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_sitesize'
+  // Exported field_instance: 'node-website-field_sitesize'.
   $field_instances['node-website-field_sitesize'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -2141,7 +2343,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_stat_nodes'
+  // Exported field_instance: 'node-website-field_stat_nodes'.
   $field_instances['node-website-field_stat_nodes'] = array(
     'bundle' => 'website',
     'default_value' => array(
@@ -2227,7 +2429,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_stat_revisions'
+  // Exported field_instance: 'node-website-field_stat_revisions'.
   $field_instances['node-website-field_stat_revisions'] = array(
     'bundle' => 'website',
     'default_value' => array(
@@ -2313,7 +2515,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_stat_users'
+  // Exported field_instance: 'node-website-field_stat_users'.
   $field_instances['node-website-field_stat_users'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -2330,7 +2532,7 @@ function archimedes_server_feature_field_default_field_instances() {
           'thousand_separator' => ',',
         ),
         'type' => 'number_integer',
-        'weight' => 8,
+        'weight' => 9,
       ),
       'full' => array(
         'label' => 'above',
@@ -2395,7 +2597,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_totalsize'
+  // Exported field_instance: 'node-website-field_totalsize'.
   $field_instances['node-website-field_totalsize'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -2435,7 +2637,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_webroot'
+  // Exported field_instance: 'node-website-field_webroot'.
   $field_instances['node-website-field_webroot'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -2475,7 +2677,7 @@ function archimedes_server_feature_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-website-field_webserver'
+  // Exported field_instance: 'node-website-field_webserver'.
   $field_instances['node-website-field_webserver'] = array(
     'bundle' => 'website',
     'default_value' => NULL,
@@ -2518,8 +2720,10 @@ function archimedes_server_feature_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
+  t('CiviCRM Extensions');
   t('CiviCRM Git Branch');
   t('CiviCRM Git commit');
+  t('CiviCRM last cron');
   t('Common hash');
   t('Content');
   t('Content revisions');
@@ -2533,6 +2737,9 @@ function archimedes_server_feature_field_default_field_instances() {
   t('Drupal.org project name');
   t('Drupal.org project page');
   t('Environment');
+  t('Git Branch');
+  t('Git Commit Hash');
+  t('Git Remote URL');
   t('Git Repositories');
   t('Git Status');
   t('Hostname of DB server.');

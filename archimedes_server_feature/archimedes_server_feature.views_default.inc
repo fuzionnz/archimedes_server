@@ -114,6 +114,13 @@ function archimedes_server_feature_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'No results for that search. Try, try, try again.';
+  $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -391,6 +398,51 @@ function archimedes_server_feature_views_default_views() {
   $handler->display->display_options['relationships']['reverse_field_drupal_mod_node']['field'] = 'reverse_field_drupal_mod_node';
   $handler->display->display_options['relationships']['reverse_field_drupal_mod_node']['label'] = 'Websites from field_drupal_mod';
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Bulk operations: Content */
+  $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
+  $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_type'] = '0';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['enable_select_all_pages'] = 1;
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['row_clickable'] = 1;
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['force_single'] = 0;
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['entity_load_capacity'] = '10';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = array(
+    'action::views_bulk_operations_delete_item' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+    'action::views_bulk_operations_modify_action' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+      'settings' => array(
+        'show_all_tokens' => 1,
+        'display_values' => array(
+          '_all_' => '_all_',
+        ),
+      ),
+    ),
+    'action::node_publish_action' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+    'action::node_unpublish_action' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -460,51 +512,6 @@ function archimedes_server_feature_views_default_views() {
   $handler->display->display_options['fields']['title_1']['group_type'] = 'count';
   $handler->display->display_options['fields']['title_1']['label'] = 'No of websites';
   $handler->display->display_options['fields']['title_1']['separator'] = '';
-  /* Field: Bulk operations: Content */
-  $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
-  $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'node';
-  $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_type'] = '0';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['enable_select_all_pages'] = 1;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['row_clickable'] = 1;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['force_single'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['entity_load_capacity'] = '10';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = array(
-    'action::views_bulk_operations_delete_item' => array(
-      'selected' => 1,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-    ),
-    'action::views_bulk_operations_modify_action' => array(
-      'selected' => 1,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'settings' => array(
-        'show_all_tokens' => 1,
-        'display_values' => array(
-          '_all_' => '_all_',
-        ),
-      ),
-    ),
-    'action::node_publish_action' => array(
-      'selected' => 1,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-    ),
-    'action::node_unpublish_action' => array(
-      'selected' => 1,
-      'postpone_processing' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-    ),
-  );
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -1452,7 +1459,7 @@ return false;';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Bulk operations: Content */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
-  $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'node';
+  $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_type'] = '0';
@@ -1565,9 +1572,17 @@ return false;';
     'field_servername' => 'field_servername',
     'field_site_env' => 'field_site_env',
     'changed' => 'changed',
-    'field_drupal_version' => 'field_drupal_version',
-    'field_webserver' => 'field_webserver',
+    'field_stat_nodes' => 'field_stat_nodes',
+    'field_dbhost' => 'field_dbhost',
+    'field_dbname' => 'field_dbname',
+    'field_sitedata' => 'field_sitedata',
+    'field_site_env_1' => 'field_site_env_1',
     'field_webroot' => 'field_webroot',
+    'field_git_remote_url' => 'field_git_remote_url',
+    'field_git_branch' => 'field_git_branch',
+    'field_git_commit_hash' => 'field_git_commit_hash',
+    'field_stat_users' => 'field_stat_users',
+    'field_civicrm_lastcron' => 'field_civicrm_lastcron',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
@@ -1599,14 +1614,33 @@ return false;';
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_drupal_version' => array(
+    'field_stat_nodes' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_webserver' => array(
+    'field_dbhost' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_dbname' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_sitedata' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_site_env_1' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -1614,13 +1648,52 @@ return false;';
       'empty_column' => 0,
     ),
     'field_webroot' => array(
-      'sortable' => 0,
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_git_remote_url' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_git_branch' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_git_commit_hash' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_stat_users' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_civicrm_lastcron' => array(
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
   );
+  /* Header: Global: Result summary */
+  $handler->display->display_options['header']['result']['id'] = 'result';
+  $handler->display->display_options['header']['result']['table'] = 'views';
+  $handler->display->display_options['header']['result']['field'] = 'result';
   /* Relationship: Entity Reference: Referencing entity */
   $handler->display->display_options['relationships']['reverse_field_websites_node']['id'] = 'reverse_field_websites_node';
   $handler->display->display_options['relationships']['reverse_field_websites_node']['table'] = 'node';
@@ -1689,6 +1762,9 @@ return false;';
   $handler->display->display_options['filters']['field_site_env_tid']['id'] = 'field_site_env_tid';
   $handler->display->display_options['filters']['field_site_env_tid']['table'] = 'field_data_field_site_env';
   $handler->display->display_options['filters']['field_site_env_tid']['field'] = 'field_site_env_tid';
+  $handler->display->display_options['filters']['field_site_env_tid']['value'] = array(
+    1 => '1',
+  );
   $handler->display->display_options['filters']['field_site_env_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_site_env_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_site_env_tid']['expose']['operator_id'] = 'env_op';
@@ -1857,6 +1933,39 @@ return false;';
   $handler->display->display_options['filters']['field_webserver_value']['expose']['operator'] = 'field_webserver_value_op';
   $handler->display->display_options['filters']['field_webserver_value']['expose']['identifier'] = 'field_webserver_value';
   $handler->display->display_options['filters']['field_webserver_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  /* Filter criterion: Content: Git Status (field_git_status) */
+  $handler->display->display_options['filters']['field_git_status_value']['id'] = 'field_git_status_value';
+  $handler->display->display_options['filters']['field_git_status_value']['table'] = 'field_data_field_git_status';
+  $handler->display->display_options['filters']['field_git_status_value']['field'] = 'field_git_status_value';
+  $handler->display->display_options['filters']['field_git_status_value']['operator'] = 'empty';
+  $handler->display->display_options['filters']['field_git_status_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_git_status_value']['expose']['operator_id'] = 'field_git_status_value_op';
+  $handler->display->display_options['filters']['field_git_status_value']['expose']['label'] = 'Git Status (field_git_status)';
+  $handler->display->display_options['filters']['field_git_status_value']['expose']['use_operator'] = TRUE;
+  $handler->display->display_options['filters']['field_git_status_value']['expose']['operator'] = 'field_git_status_value_op';
+  $handler->display->display_options['filters']['field_git_status_value']['expose']['identifier'] = 'field_git_status_value';
+  $handler->display->display_options['filters']['field_git_status_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  /* Filter criterion: Content: Link (field_servername:url) */
+  $handler->display->display_options['filters']['field_servername_url']['id'] = 'field_servername_url';
+  $handler->display->display_options['filters']['field_servername_url']['table'] = 'field_data_field_servername';
+  $handler->display->display_options['filters']['field_servername_url']['field'] = 'field_servername_url';
+  $handler->display->display_options['filters']['field_servername_url']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_servername_url']['value'] = 'https';
+  $handler->display->display_options['filters']['field_servername_url']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_servername_url']['expose']['operator_id'] = 'field_servername_url_op';
+  $handler->display->display_options['filters']['field_servername_url']['expose']['label'] = 'Link (field_servername:url)';
+  $handler->display->display_options['filters']['field_servername_url']['expose']['use_operator'] = TRUE;
+  $handler->display->display_options['filters']['field_servername_url']['expose']['operator'] = 'field_servername_url_op';
+  $handler->display->display_options['filters']['field_servername_url']['expose']['identifier'] = 'field_servername_url';
+  $handler->display->display_options['filters']['field_servername_url']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     3 => 0,
@@ -2149,6 +2258,16 @@ return false;';
   $handler->display->display_options['fields']['field_webserver']['table'] = 'field_data_field_webserver';
   $handler->display->display_options['fields']['field_webserver']['field'] = 'field_webserver';
   $handler->display->display_options['fields']['field_webserver']['label'] = 'hostname';
+  /* Field: Content: Git Branch */
+  $handler->display->display_options['fields']['field_git_branch']['id'] = 'field_git_branch';
+  $handler->display->display_options['fields']['field_git_branch']['table'] = 'field_data_field_git_branch';
+  $handler->display->display_options['fields']['field_git_branch']['field'] = 'field_git_branch';
+  $handler->display->display_options['fields']['field_git_branch']['label'] = 'git_branch';
+  /* Field: Content: Git Remote URL */
+  $handler->display->display_options['fields']['field_git_remote_url']['id'] = 'field_git_remote_url';
+  $handler->display->display_options['fields']['field_git_remote_url']['table'] = 'field_data_field_git_remote_url';
+  $handler->display->display_options['fields']['field_git_remote_url']['field'] = 'field_git_remote_url';
+  $handler->display->display_options['fields']['field_git_remote_url']['label'] = 'git_remote_url';
   $handler->display->display_options['path'] = 'websites.json';
 
   /* Display: Size Chart (by size) */
@@ -3043,7 +3162,7 @@ return false;';
   $handler->display->display_options['filters']['field_drupal_version_value']['table'] = 'field_data_field_drupal_version';
   $handler->display->display_options['filters']['field_drupal_version_value']['field'] = 'field_drupal_version_value';
   $handler->display->display_options['filters']['field_drupal_version_value']['operator'] = 'not_regular_expression';
-  $handler->display->display_options['filters']['field_drupal_version_value']['value'] = '(7.4[12]|6.37)';
+  $handler->display->display_options['filters']['field_drupal_version_value']['value'] = '(7.52|7.53|7.54|6.38)';
   $handler->display->display_options['filters']['field_drupal_version_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_drupal_version_value']['expose']['operator_id'] = 'field_drupal_version_value_op';
   $handler->display->display_options['filters']['field_drupal_version_value']['expose']['label'] = 'Drupal Version (field_drupal_version)';
@@ -3051,22 +3170,6 @@ return false;';
   $handler->display->display_options['filters']['field_drupal_version_value']['expose']['operator'] = 'field_drupal_version_value_op';
   $handler->display->display_options['filters']['field_drupal_version_value']['expose']['identifier'] = 'field_drupal_version_value';
   $handler->display->display_options['filters']['field_drupal_version_value']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-  );
-  /* Filter criterion: Content: Drupal Version (field_drupal_version) */
-  $handler->display->display_options['filters']['field_drupal_version_value_1']['id'] = 'field_drupal_version_value_1';
-  $handler->display->display_options['filters']['field_drupal_version_value_1']['table'] = 'field_data_field_drupal_version';
-  $handler->display->display_options['filters']['field_drupal_version_value_1']['field'] = 'field_drupal_version_value';
-  $handler->display->display_options['filters']['field_drupal_version_value_1']['operator'] = '!=';
-  $handler->display->display_options['filters']['field_drupal_version_value_1']['value'] = '6.36';
-  $handler->display->display_options['filters']['field_drupal_version_value_1']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_drupal_version_value_1']['expose']['operator_id'] = 'field_drupal_version_value_1_op';
-  $handler->display->display_options['filters']['field_drupal_version_value_1']['expose']['label'] = 'Drupal Version (field_drupal_version)';
-  $handler->display->display_options['filters']['field_drupal_version_value_1']['expose']['operator'] = 'field_drupal_version_value_1_op';
-  $handler->display->display_options['filters']['field_drupal_version_value_1']['expose']['identifier'] = 'field_drupal_version_value_1';
-  $handler->display->display_options['filters']['field_drupal_version_value_1']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
     3 => 0,
@@ -3089,14 +3192,23 @@ return false;';
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
     'title' => 'title',
+    'field_webserver' => 'field_webserver',
     'field_servername' => 'field_servername',
     'field_site_env' => 'field_site_env',
     'changed' => 'changed',
     'field_drupal_version' => 'field_drupal_version',
+    'field_webroot' => 'field_webroot',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
     'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_webserver' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -3111,21 +3223,28 @@ return false;';
       'empty_column' => 0,
     ),
     'field_site_env' => array(
-      'sortable' => 0,
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
     'changed' => array(
-      'sortable' => 0,
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
     'field_drupal_version' => array(
-      'sortable' => 0,
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_webroot' => array(
+      'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
@@ -3177,6 +3296,10 @@ return false;';
   $handler->display->display_options['fields']['field_drupal_version']['id'] = 'field_drupal_version';
   $handler->display->display_options['fields']['field_drupal_version']['table'] = 'field_data_field_drupal_version';
   $handler->display->display_options['fields']['field_drupal_version']['field'] = 'field_drupal_version';
+  /* Field: Content: Webroot */
+  $handler->display->display_options['fields']['field_webroot']['id'] = 'field_webroot';
+  $handler->display->display_options['fields']['field_webroot']['table'] = 'field_data_field_webroot';
+  $handler->display->display_options['fields']['field_webroot']['field'] = 'field_webroot';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -3246,6 +3369,25 @@ return false;';
     1 => 0,
     3 => 0,
   );
+  /* Filter criterion: Content: Environment (field_site_env) */
+  $handler->display->display_options['filters']['field_site_env_tid']['id'] = 'field_site_env_tid';
+  $handler->display->display_options['filters']['field_site_env_tid']['table'] = 'field_data_field_site_env';
+  $handler->display->display_options['filters']['field_site_env_tid']['field'] = 'field_site_env_tid';
+  $handler->display->display_options['filters']['field_site_env_tid']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_site_env_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_site_env_tid']['expose']['operator_id'] = 'field_site_env_tid_op';
+  $handler->display->display_options['filters']['field_site_env_tid']['expose']['label'] = 'Environment (field_site_env)';
+  $handler->display->display_options['filters']['field_site_env_tid']['expose']['operator'] = 'field_site_env_tid_op';
+  $handler->display->display_options['filters']['field_site_env_tid']['expose']['identifier'] = 'field_site_env_tid';
+  $handler->display->display_options['filters']['field_site_env_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+  $handler->display->display_options['filters']['field_site_env_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_site_env_tid']['vocabulary'] = 'environment';
   $handler->display->display_options['path'] = 'websites/git-cleanup';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Git Cleanup';
@@ -3286,7 +3428,9 @@ return false;';
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
   $handler->display->display_options['fields']['changed']['field'] = 'changed';
-  $handler->display->display_options['fields']['changed']['date_format'] = 'long';
+  $handler->display->display_options['fields']['changed']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['changed']['custom_date_format'] = 'd M Y - i:H';
+  $handler->display->display_options['fields']['changed']['second_date_format'] = 'long';
   /* Field: Content: Content */
   $handler->display->display_options['fields']['field_stat_nodes']['id'] = 'field_stat_nodes';
   $handler->display->display_options['fields']['field_stat_nodes']['table'] = 'field_data_field_stat_nodes';
@@ -3296,6 +3440,10 @@ return false;';
     'thousand_separator' => ' ',
     'prefix_suffix' => 1,
   );
+  /* Field: Content: Webserver */
+  $handler->display->display_options['fields']['field_webserver']['id'] = 'field_webserver';
+  $handler->display->display_options['fields']['field_webserver']['table'] = 'field_data_field_webserver';
+  $handler->display->display_options['fields']['field_webserver']['field'] = 'field_webserver';
   /* Field: Content: DB Host */
   $handler->display->display_options['fields']['field_dbhost']['id'] = 'field_dbhost';
   $handler->display->display_options['fields']['field_dbhost']['table'] = 'field_data_field_dbhost';
@@ -3304,6 +3452,10 @@ return false;';
   $handler->display->display_options['fields']['field_dbname']['id'] = 'field_dbname';
   $handler->display->display_options['fields']['field_dbname']['table'] = 'field_data_field_dbname';
   $handler->display->display_options['fields']['field_dbname']['field'] = 'field_dbname';
+  /* Field: Content: CiviCRM DB Name */
+  $handler->display->display_options['fields']['field_civicrm_db_name']['id'] = 'field_civicrm_db_name';
+  $handler->display->display_options['fields']['field_civicrm_db_name']['table'] = 'field_data_field_civicrm_db_name';
+  $handler->display->display_options['fields']['field_civicrm_db_name']['field'] = 'field_civicrm_db_name';
   /* Field: Content: Site Data */
   $handler->display->display_options['fields']['field_sitedata']['id'] = 'field_sitedata';
   $handler->display->display_options['fields']['field_sitedata']['table'] = 'field_data_field_sitedata';
@@ -3313,6 +3465,22 @@ return false;';
   $handler->display->display_options['fields']['field_site_env_1']['id'] = 'field_site_env_1';
   $handler->display->display_options['fields']['field_site_env_1']['table'] = 'field_data_field_site_env';
   $handler->display->display_options['fields']['field_site_env_1']['field'] = 'field_site_env';
+  /* Field: Content: Webroot */
+  $handler->display->display_options['fields']['field_webroot']['id'] = 'field_webroot';
+  $handler->display->display_options['fields']['field_webroot']['table'] = 'field_data_field_webroot';
+  $handler->display->display_options['fields']['field_webroot']['field'] = 'field_webroot';
+  /* Field: Content: Git Remote URL */
+  $handler->display->display_options['fields']['field_git_remote_url']['id'] = 'field_git_remote_url';
+  $handler->display->display_options['fields']['field_git_remote_url']['table'] = 'field_data_field_git_remote_url';
+  $handler->display->display_options['fields']['field_git_remote_url']['field'] = 'field_git_remote_url';
+  /* Field: Content: Git Branch */
+  $handler->display->display_options['fields']['field_git_branch']['id'] = 'field_git_branch';
+  $handler->display->display_options['fields']['field_git_branch']['table'] = 'field_data_field_git_branch';
+  $handler->display->display_options['fields']['field_git_branch']['field'] = 'field_git_branch';
+  /* Field: Content: Git Commit Hash */
+  $handler->display->display_options['fields']['field_git_commit_hash']['id'] = 'field_git_commit_hash';
+  $handler->display->display_options['fields']['field_git_commit_hash']['table'] = 'field_data_field_git_commit_hash';
+  $handler->display->display_options['fields']['field_git_commit_hash']['field'] = 'field_git_commit_hash';
   /* Field: Content: User accounts */
   $handler->display->display_options['fields']['field_stat_users']['id'] = 'field_stat_users';
   $handler->display->display_options['fields']['field_stat_users']['table'] = 'field_data_field_stat_users';
@@ -3322,10 +3490,11 @@ return false;';
     'thousand_separator' => ' ',
     'prefix_suffix' => 1,
   );
-  /* Field: Content: Webroot */
-  $handler->display->display_options['fields']['field_webroot']['id'] = 'field_webroot';
-  $handler->display->display_options['fields']['field_webroot']['table'] = 'field_data_field_webroot';
-  $handler->display->display_options['fields']['field_webroot']['field'] = 'field_webroot';
+  /* Field: Content: CiviCRM last cron */
+  $handler->display->display_options['fields']['field_civicrm_lastcron']['id'] = 'field_civicrm_lastcron';
+  $handler->display->display_options['fields']['field_civicrm_lastcron']['table'] = 'field_data_field_civicrm_lastcron';
+  $handler->display->display_options['fields']['field_civicrm_lastcron']['field'] = 'field_civicrm_lastcron';
+  $handler->display->display_options['fields']['field_civicrm_lastcron']['label'] = 'Last Civi Cron';
   $handler->display->display_options['path'] = 'websites/view/detailed';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Sites detail';
@@ -3433,7 +3602,7 @@ return false;';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Bulk operations: Content */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
-  $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'node';
+  $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_type'] = '0';
@@ -3595,13 +3764,14 @@ return false;';
   $handler->display->display_options['style_options']['columns'] = array(
     'field_site_env' => 'field_site_env',
     'title_1' => 'title_1',
+    'title_2' => 'title_2',
     'field_servername' => 'field_servername',
     'title' => 'title',
     'changed' => 'changed',
     'field_webserver' => 'field_webserver',
     'field_site_env_1' => 'field_site_env_1',
   );
-  $handler->display->display_options['style_options']['default'] = 'title_1';
+  $handler->display->display_options['style_options']['default'] = 'title_2';
   $handler->display->display_options['style_options']['info'] = array(
     'field_site_env' => array(
       'sortable' => 1,
@@ -3611,6 +3781,13 @@ return false;';
       'empty_column' => 0,
     ),
     'title_1' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title_2' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -3837,6 +4014,13 @@ return false;';
   $handler->display->display_options['filters']['changed']['operator'] = '>';
   $handler->display->display_options['filters']['changed']['value']['value'] = '-1 month';
   $handler->display->display_options['filters']['changed']['value']['type'] = 'offset';
+  /* Filter criterion: Content: Drupal compatibility (field_drupal_compat) */
+  $handler->display->display_options['filters']['field_drupal_compat_value']['id'] = 'field_drupal_compat_value';
+  $handler->display->display_options['filters']['field_drupal_compat_value']['table'] = 'field_data_field_drupal_compat';
+  $handler->display->display_options['filters']['field_drupal_compat_value']['field'] = 'field_drupal_compat_value';
+  $handler->display->display_options['filters']['field_drupal_compat_value']['relationship'] = 'field_drupal_mod_target_id';
+  $handler->display->display_options['filters']['field_drupal_compat_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_drupal_compat_value']['value']['value'] = '7';
   $handler->display->display_options['path'] = 'websites/insecure';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Vulnerable sites';
@@ -4006,6 +4190,40 @@ return false;';
   $handler->display->display_options['fields']['field_db_size']['id'] = 'field_db_size';
   $handler->display->display_options['fields']['field_db_size']['table'] = 'field_data_field_db_size';
   $handler->display->display_options['fields']['field_db_size']['field'] = 'field_db_size';
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: DB Size (field_db_size) */
+  $handler->display->display_options['sorts']['field_db_size_value']['id'] = 'field_db_size_value';
+  $handler->display->display_options['sorts']['field_db_size_value']['table'] = 'field_data_field_db_size';
+  $handler->display->display_options['sorts']['field_db_size_value']['field'] = 'field_db_size_value';
+  $handler->display->display_options['sorts']['field_db_size_value']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['field_db_size_value']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_db_size_value']['expose']['label'] = 'DB Size (field_db_size)';
+  /* Sort criterion: Content: Site Data (field_sitedata) */
+  $handler->display->display_options['sorts']['field_sitedata_value']['id'] = 'field_sitedata_value';
+  $handler->display->display_options['sorts']['field_sitedata_value']['table'] = 'field_data_field_sitedata';
+  $handler->display->display_options['sorts']['field_sitedata_value']['field'] = 'field_sitedata_value';
+  $handler->display->display_options['sorts']['field_sitedata_value']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['field_sitedata_value']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_sitedata_value']['expose']['label'] = 'Site Data (field_sitedata)';
+  /* Sort criterion: Content: Site Size (field_sitesize) */
+  $handler->display->display_options['sorts']['field_sitesize_value']['id'] = 'field_sitesize_value';
+  $handler->display->display_options['sorts']['field_sitesize_value']['table'] = 'field_data_field_sitesize';
+  $handler->display->display_options['sorts']['field_sitesize_value']['field'] = 'field_sitesize_value';
+  $handler->display->display_options['sorts']['field_sitesize_value']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_sitesize_value']['expose']['label'] = 'Site Size (field_sitesize)';
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['sorts']['title']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['title']['expose']['label'] = 'Title';
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  $handler->display->display_options['sorts']['created']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['created']['expose']['label'] = 'Post date';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
