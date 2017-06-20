@@ -34,6 +34,7 @@ function archimedes_server_requirements($phase) {
     else {
       $message = '@count items in queue.';
     }
+    $message = l($message, 'admin/reports/archimedes/queue');
     $requirements['archimedes-queue'] = array(
       'title' => t('Archimedes Server queue'),
       'value' => $t($message, array('@count' => $count)),
