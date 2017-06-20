@@ -15,6 +15,8 @@ function archimedes_server_page_queue() {
   require_once dirname(__FILE__) . '/archimedes_server.server.inc';
   module_load_include('inc', 'archimedes_server', 'archimedes_server.server.inc');
 
+  $rows = array();
+
   $query = db_select('queue', 'q')
     ->fields('q')
     ->condition('name', 'archimedes_server')
@@ -34,9 +36,9 @@ function archimedes_server_page_queue() {
     if (!empty($doc->node->nid)) {
       $rows[] = array(
         l($doc->node->title, 'node/' . $doc->node->nid),
-        $doc->node->field_servername['und'][0]['url'],
-        $doc->node->field_webserver['und'][0]['value'],
-        $doc->node->field_webroot['und'][0]['value'],
+        isset($doc->node->field_servername['und'][0]['url']) ? $doc->node->field_servername['und'][0]['url'] : '',
+        isset($doc->node->field_webserver['und'][0]['value']) ? $doc->node->field_webserver['und'][0]['value'] : '',
+        isset($doc->node->field_webroot['und'][0]['value']) ? $doc->node->field_webroot['und'][0]['value'] : '',
         date('c', $doc->node->changed),
         strlen($xml),
       );
@@ -66,7 +68,7 @@ function archimedes_server_page_queue() {
   return theme('table', array(
       'header' => $header,
       'rows' => $rows,
-      // 'caption' => 'This table shows the entries in the Archimedes import queue.'
+      'caption' => sizeof($rows) . ' items in queue. ' . l('Run cron', 'admin/reports/status/run-cron'),
     ));
 
 }
