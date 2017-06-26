@@ -3162,7 +3162,7 @@ return false;';
   $handler->display->display_options['filters']['field_drupal_version_value']['table'] = 'field_data_field_drupal_version';
   $handler->display->display_options['filters']['field_drupal_version_value']['field'] = 'field_drupal_version_value';
   $handler->display->display_options['filters']['field_drupal_version_value']['operator'] = 'not_regular_expression';
-  $handler->display->display_options['filters']['field_drupal_version_value']['value'] = '(7.52|7.53|7.54|6.38)';
+  $handler->display->display_options['filters']['field_drupal_version_value']['value'] = '(7.56|6.38)';
   $handler->display->display_options['filters']['field_drupal_version_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_drupal_version_value']['expose']['operator_id'] = 'field_drupal_version_value_op';
   $handler->display->display_options['filters']['field_drupal_version_value']['expose']['label'] = 'Drupal Version (field_drupal_version)';
