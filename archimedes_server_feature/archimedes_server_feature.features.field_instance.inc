@@ -1342,11 +1342,12 @@ function archimedes_server_feature_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_civicrm_extensions',
     'label' => 'CiviCRM Extensions',
-    'required' => FALSE,
+    'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'entityreference',
       'settings' => array(
         'match_operator' => 'CONTAINS',
@@ -1745,7 +1746,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 7,
+      'weight' => 30,
     ),
   );
 
@@ -1821,7 +1822,7 @@ function archimedes_server_feature_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 8,
+      'weight' => 31,
     ),
   );
 

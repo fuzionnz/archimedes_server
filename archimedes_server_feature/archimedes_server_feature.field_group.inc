@@ -155,6 +155,7 @@ function archimedes_server_feature_field_group_info() {
     'children' => array(
       0 => 'field_drupal_mod',
       1 => 'field_drupal_theme',
+      2 => 'field_civicrm_extensions',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

@@ -917,14 +917,10 @@ return false;';
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'project' => 'project',
-  );
-  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Key (field_key) */
+  $handler->display->display_options['filters']['field_key_value']['id'] = 'field_key_value';
+  $handler->display->display_options['filters']['field_key_value']['table'] = 'field_data_field_key';
+  $handler->display->display_options['filters']['field_key_value']['field'] = 'field_key_value';
 
   /* Display: Civi */
   $handler = $view->new_display('page', 'Civi', 'page_2');
@@ -1572,17 +1568,9 @@ return false;';
     'field_servername' => 'field_servername',
     'field_site_env' => 'field_site_env',
     'changed' => 'changed',
-    'field_stat_nodes' => 'field_stat_nodes',
-    'field_dbhost' => 'field_dbhost',
-    'field_dbname' => 'field_dbname',
-    'field_sitedata' => 'field_sitedata',
-    'field_site_env_1' => 'field_site_env_1',
+    'field_drupal_version' => 'field_drupal_version',
+    'field_webserver' => 'field_webserver',
     'field_webroot' => 'field_webroot',
-    'field_git_remote_url' => 'field_git_remote_url',
-    'field_git_branch' => 'field_git_branch',
-    'field_git_commit_hash' => 'field_git_commit_hash',
-    'field_stat_users' => 'field_stat_users',
-    'field_civicrm_lastcron' => 'field_civicrm_lastcron',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
@@ -1614,33 +1602,14 @@ return false;';
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_stat_nodes' => array(
+    'field_drupal_version' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_dbhost' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_dbname' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_sitedata' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_site_env_1' => array(
+    'field_webserver' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -1648,41 +1617,6 @@ return false;';
       'empty_column' => 0,
     ),
     'field_webroot' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_git_remote_url' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_git_branch' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_git_commit_hash' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_stat_users' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_civicrm_lastcron' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -3162,7 +3096,7 @@ return false;';
   $handler->display->display_options['filters']['field_drupal_version_value']['table'] = 'field_data_field_drupal_version';
   $handler->display->display_options['filters']['field_drupal_version_value']['field'] = 'field_drupal_version_value';
   $handler->display->display_options['filters']['field_drupal_version_value']['operator'] = 'not_regular_expression';
-  $handler->display->display_options['filters']['field_drupal_version_value']['value'] = '(7.52|7.53|7.54|6.38)';
+  $handler->display->display_options['filters']['field_drupal_version_value']['value'] = '(7.56|6.38)';
   $handler->display->display_options['filters']['field_drupal_version_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_drupal_version_value']['expose']['operator_id'] = 'field_drupal_version_value_op';
   $handler->display->display_options['filters']['field_drupal_version_value']['expose']['label'] = 'Drupal Version (field_drupal_version)';
